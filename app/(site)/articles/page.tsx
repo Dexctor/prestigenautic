@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   title: "Articles & guides nautiques | Prestige Nautic",
   description:
     "Conseils d'artisan nautique : entretien du teck, vaigrage, refit, choix des matériaux… Tous les guides de Prestige Nautic, basé à Toulon sur la Côte d'Azur.",
-  alternates: { canonical: "https://prestigenautic.com/articles.html" },
+  alternates: { canonical: "https://prestigenautic.com/articles" },
   openGraph: {
     type: "website",
-    url: "https://prestigenautic.com/articles.html",
+    url: "https://prestigenautic.com/articles",
     title: "Articles et guides nautiques | Prestige Nautic",
     description:
       "Conseils d'artisan nautique : entretien du teck, vaigrage, refit, choix des matériaux. Guides Prestige Nautic, Toulon — Côte d'Azur.",
@@ -23,7 +23,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Articles", item: "https://prestigenautic.com/articles.html" },
+    { "@type": "ListItem", position: 2, name: "Articles", item: "https://prestigenautic.com/articles" },
   ],
 };
 
@@ -33,7 +33,7 @@ const collectionJsonLd = {
   name: "Articles et guides nautiques — Prestige Nautic",
   description:
     "Guides pratiques et conseils d'artisan nautique par Prestige Nautic, basé à Toulon sur la Côte d'Azur.",
-  url: "https://prestigenautic.com/articles.html",
+  url: "https://prestigenautic.com/articles",
   publisher: {
     "@type": "Organization",
     name: "Prestige Nautic",
@@ -43,7 +43,7 @@ const collectionJsonLd = {
 
 export default function ArticlesPage() {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
 

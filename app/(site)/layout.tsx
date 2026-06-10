@@ -8,6 +8,9 @@ export default function SiteLayout({
 }>) {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Aller au contenu principal
+      </a>
       <Header />
       {children}
       <Footer />

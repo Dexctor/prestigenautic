@@ -1,7 +1,8 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import QuoteForm from "@/components/QuoteForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import Reveal from "@/components/Reveal";
+import ServiceGrid from "@/components/ServiceGrid";
 
 export const metadata: Metadata = {
   title: "Artisan teck nautique Toulon & Côte d'Azur | Prestige Nautic",
@@ -22,8 +23,9 @@ const SERVICES = [
     href: "/pages/teck-synthetique",
     cls: "service-card--teck-synthetique",
     title: "Teck synthétique",
-    text: "Pose soignée, rendu durable, propre et élégant.",
-    cta: "Configurer →",
+    text: "Pose soignée, rendu durable, propre et élégant. Visualisez votre pont dans notre configurateur en ligne.",
+    cta: "Configurer",
+    featured: true,
   },
   {
     href: "/pages/teck-naturel",
@@ -77,6 +79,8 @@ const localBusinessJsonLd = {
     { "@type": "City", name: "Antibes" },
     { "@type": "City", name: "Saint-Tropez" },
     { "@type": "City", name: "Marseille" },
+    { "@type": "City", name: "Hyères" },
+    { "@type": "City", name: "Monaco" },
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -93,7 +97,8 @@ const localBusinessJsonLd = {
 
 export default function Home() {
   return (
-    <main id="top">
+    <main id="main-content" tabIndex={-1}>
+      <span id="top" aria-hidden="true" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
@@ -108,7 +113,9 @@ export default function Home() {
             muted
             loop
             playsInline
+            preload="metadata"
             poster="/assets/poster-yacht.webp"
+            aria-hidden="true"
           >
             <source src="/assets/video-yacht.mp4" type="video/mp4" />
           </video>
@@ -139,37 +146,26 @@ export default function Home() {
       {/* PRESTATIONS */}
       <section className="section" id="services">
         <div className="container">
-          <div className="section-head section-head--services">
+          <Reveal className="section-head section-head--services">
             <span className="section-eyebrow">Nos prestations</span>
             <h2>
-              Un <em>savoir-faire</em> qui s&apos;exprime dans chaque détail
+              Un <em>savoir-faire </em> qui s&apos;exprime dans chaque détail
             </h2>
             <p>
               Une approche artisanale et technique pour des projets exigeants, du pont aux
               finitions intérieures. Sélectionnez la prestation qui correspond à votre
               projet.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="services-carousel" aria-label="Prestations Prestige Nautic">
-            {SERVICES.map((s) => (
-              <Link key={s.href} className={`service-card ${s.cls}`} href={s.href}>
-                <span className="service-card__overlay"></span>
-                <span className="service-card__content">
-                  <span className="service-card__title">{s.title}</span>
-                  <span className="service-card__text">{s.text}</span>
-                  {s.cta && <span className="service-card__cta">{s.cta}</span>}
-                </span>
-              </Link>
-            ))}
-          </div>
+          <ServiceGrid services={SERVICES} />
         </div>
       </section>
 
       {/* SAVOIR-FAIRE */}
       <section className="section section--split" id="savoir-faire">
         <div className="container section-grid">
-          <div className="section-text">
+          <Reveal className="section-text">
             <span className="section-eyebrow">Notre approche</span>
             <h2>
               Savoir-faire <em>Prestige Nautic</em>
@@ -186,8 +182,8 @@ export default function Home() {
               gamme, avec une attention particulière portée aux contraintes marines de la
               Méditerranée.
             </p>
-          </div>
-          <div className="section-media">
+          </Reveal>
+          <Reveal className="section-media" delay={0.1}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/photo-yacht-luxe-1.webp"
@@ -196,11 +192,11 @@ export default function Home() {
               width={1600}
               height={900}
             />
-          </div>
+          </Reveal>
         </div>
 
         <div className="container">
-          <div className="values-strip">
+          <Reveal className="values-strip">
             <div className="value-item">
               <AnimatedCounter target={100} suffix="%" />
               <span className="value-item__label">Sur mesure</span>
@@ -229,14 +225,14 @@ export default function Home() {
                 Un interlocuteur unique du devis jusqu&apos;à la livraison du chantier.
               </span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* DEVIS */}
       <section className="section" id="devis">
         <div className="container">
-          <div className="section-head">
+          <Reveal className="section-head">
             <span className="section-eyebrow">Étude personnalisée</span>
             <h2>
               Demande de <em>devis</em>
@@ -245,7 +241,7 @@ export default function Home() {
               Décrivez votre projet, votre bateau et vos coordonnées. Cette première
               demande nous permet de préparer un retour sérieux et adapté à vos exigences.
             </p>
-          </div>
+          </Reveal>
 
           <QuoteForm />
         </div>

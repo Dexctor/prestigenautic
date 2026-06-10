@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prestige Nautic - Proposition design luxe</title>
+    <meta
+      name="description"
+      content="Prototype HTML d'une direction artistique luxe pour Prestige Nautic, artisan nautique haut de gamme sur la Cote d'Azur."
+    >
+    <link rel="preload" as="image" href="assets/photo-yacht-luxe-1.webp">
+    <link rel="stylesheet" href="assets/fonts/google-fonts.css">
+    <style>
+      :root {
+        --navy-950: #03101e;
+        --navy-900: #071c31;
+        --navy-800: #0b2a46;
+        --navy-700: #14385c;
+        --gold: #b8924e;
+        --gold-soft: #d8c28b;
+        --ivory: #f8f5ee;
+        --ivory-2: #eee7da;
+        --white: #ffffff;
+        --ink: #122235;
+        --muted: #667487;
+        --line: rgba(18, 34, 53, 0.14);
+        --line-dark: rgba(255, 255, 255, 0.16);
+        --container: 1180px;
+        --shadow: 0 24px 70px rgba(3, 16, 30, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--ivory);
+        font-family: Inter, Jost, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        letter-spacing: 0;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      img,
+      video {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      .shell {
+        width: min(100% - 48px, var(--container));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(3, 16, 30, 0.9);
+        border-bottom: 1px solid var(--line-dark);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 84px;
+        gap: 28px;
+      }
+
+      .brand img {
+        width: 142px;
+        height: auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .nav a {
+        padding: 10px 12px;
+        border-radius: 6px;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.08);
+        outline: none;
+      }
+
+      .nav__cta {
+        margin-left: 8px;
+        color: var(--navy-950);
+        background: var(--gold-soft);
+      }
+
+      .nav__cta:hover,
+      .nav__cta:focus-visible {
+        color: var(--navy-950);
+        background: var(--gold);
+      }
+
+      .hero {
+        min-height: calc(100svh - 220px);
+        display: grid;
+        align-items: end;
+        position: relative;
+        overflow: hidden;
+        color: var(--white);
+        background: var(--navy-950);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(3, 16, 30, 0.92), rgba(3, 16, 30, 0.58) 48%, rgba(3, 16, 30, 0.18)),
+          linear-gradient(0deg, rgba(3, 16, 30, 0.86), rgba(3, 16, 30, 0.02) 48%);
+        z-index: 1;
+      }
+
+      .hero__media {
+        position: absolute;
+        inset: 0;
+      }
+
+      .hero__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.9;
+      }
+
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.52fr);
+        gap: 48px;
+        align-items: end;
+        padding: 56px 0 42px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 18px;
+        color: var(--gold-soft);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 38px;
+        height: 1px;
+        background: currentColor;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        max-width: 720px;
+        color: var(--white);
+        font-size: 84px;
+        line-height: 0.95;
+        overflow-wrap: break-word;
+      }
+
+      .hero__lead {
+        max-width: 640px;
+        margin: 24px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 18px;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 22px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .btn--gold {
+        color: var(--navy-950);
+        background: var(--gold-soft);
+        box-shadow: 0 18px 42px rgba(184, 146, 78, 0.26);
+      }
+
+      .btn--ghost {
+        color: var(--white);
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .btn--navy {
+        color: var(--white);
+        background: var(--navy-800);
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      .hero-panel {
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        background: rgba(3, 16, 30, 0.62);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .hero-panel__row {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 18px;
+        padding: 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .hero-panel__row:last-child {
+        border-bottom: 0;
+      }
+
+      .hero-panel img {
+        width: 92px;
+        height: 78px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      .hero-panel strong {
+        display: block;
+        color: var(--white);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 22px;
+        line-height: 1.1;
+      }
+
+      .hero-panel span {
+        display: block;
+        margin-top: 6px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+      }
+
+      .proof {
+        background: var(--ivory);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .proof__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+
+      .proof__item {
+        padding: 30px 26px;
+        border-left: 1px solid var(--line);
+      }
+
+      .proof__item:last-child {
+        border-right: 1px solid var(--line);
+      }
+
+      .proof b {
+        display: block;
+        color: var(--navy-800);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .proof span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 92px 0;
+      }
+
+      .section--navy {
+        color: var(--white);
+        background: var(--navy-950);
+      }
+
+      .section--ivory {
+        background: var(--ivory);
+      }
+
+      .section__head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(300px, 0.65fr);
+        gap: 52px;
+        align-items: end;
+        margin-bottom: 44px;
+      }
+
+      .section__head h2 {
+        color: var(--navy-950);
+        font-size: 56px;
+        line-height: 1;
+      }
+
+      .section--navy .section__head h2 {
+        color: var(--white);
+      }
+
+      .section__head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .section--navy .section__head p {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(160px, 1fr));
+        border-top: 1px solid var(--line-dark);
+        border-left: 1px solid var(--line-dark);
+      }
+
+      .service {
+        min-height: 420px;
+        display: grid;
+        align-content: end;
+        position: relative;
+        overflow: hidden;
+        padding: 24px;
+        border-right: 1px solid var(--line-dark);
+        border-bottom: 1px solid var(--line-dark);
+      }
+
+      .service::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(3, 16, 30, 0.9), rgba(3, 16, 30, 0.1));
+        z-index: 1;
+      }
+
+      .service img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .service:hover img {
+        transform: scale(1.04);
+      }
+
+      .service__copy {
+        position: relative;
+        z-index: 2;
+      }
+
+      .service__copy small {
+        display: block;
+        color: var(--gold-soft);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .service__copy h3 {
+        margin-top: 10px;
+        color: var(--white);
+        font-size: 30px;
+        line-height: 1.05;
+      }
+
+      .service__copy p {
+        margin: 12px 0 0;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 14px;
+      }
+
+      .atelier {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 56px;
+        align-items: center;
+      }
+
+      .atelier__image {
+        position: relative;
+      }
+
+      .atelier__image img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .atelier__note {
+        position: absolute;
+        right: -26px;
+        bottom: 34px;
+        width: min(280px, 78%);
+        padding: 22px;
+        border-radius: 8px;
+        background: var(--white);
+        box-shadow: 0 18px 60px rgba(3, 16, 30, 0.2);
+      }
+
+      .atelier__note b {
+        display: block;
+        color: var(--navy-800);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 26px;
+        line-height: 1.05;
+      }
+
+      .atelier__note span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .atelier h2 {
+        color: var(--navy-950);
+        font-size: 58px;
+        line-height: 1;
+      }
+
+      .atelier p {
+        max-width: 620px;
+        margin: 20px 0 0;
+        color: #4f5e70;
+      }
+
+      .steps {
+        display: grid;
+        gap: 0;
+        margin-top: 34px;
+        border-top: 1px solid var(--line);
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 24px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .step b {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .step strong {
+        display: block;
+        color: var(--navy-950);
+        font-size: 16px;
+      }
+
+      .step span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .materials {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 18px;
+      }
+
+      .material {
+        border-radius: 8px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line-dark);
+      }
+
+      .material img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .material__copy {
+        padding: 22px;
+      }
+
+      .material h3 {
+        color: var(--white);
+        font-size: 30px;
+      }
+
+      .material p {
+        margin: 8px 0 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+      }
+
+      .quote {
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(340px, 0.68fr);
+        gap: 54px;
+        align-items: start;
+      }
+
+      .quote h2 {
+        color: var(--navy-950);
+        font-size: 58px;
+        line-height: 1;
+      }
+
+      .quote p {
+        max-width: 580px;
+        margin: 18px 0 0;
+        color: var(--muted);
+      }
+
+      .quote__contact {
+        display: grid;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .quote__contact a,
+      .quote__contact span {
+        color: var(--navy-800);
+        font-weight: 700;
+      }
+
+      .form {
+        display: grid;
+        gap: 16px;
+        padding: 28px;
+        border-radius: 8px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        box-shadow: 0 20px 70px rgba(3, 16, 30, 0.12);
+      }
+
+      .form label {
+        display: grid;
+        gap: 7px;
+        color: var(--navy-800);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .form input,
+      .form textarea {
+        width: 100%;
+        border: 1px solid rgba(18, 34, 53, 0.22);
+        border-radius: 6px;
+        padding: 13px 14px;
+        color: var(--ink);
+        background: #fbfaf7;
+      }
+
+      .form textarea {
+        min-height: 118px;
+        resize: vertical;
+      }
+
+      .footer {
+        padding: 38px 0;
+        color: rgba(255, 255, 255, 0.68);
+        background: var(--navy-950);
+        border-top: 1px solid var(--line-dark);
+      }
+
+      .footer__inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        font-size: 14px;
+      }
+
+      .footer a {
+        color: var(--gold-soft);
+      }
+
+      @media (max-width: 900px) {
+        .nav {
+          display: none;
+        }
+
+        h1 {
+          font-size: 68px;
+        }
+
+        .hero__content,
+        .section__head,
+        .atelier,
+        .quote {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-panel {
+          max-width: 520px;
+        }
+
+        .services {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .service {
+          min-height: 340px;
+        }
+
+        .proof__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 28px, var(--container));
+        }
+
+        .topbar__inner {
+          min-height: 72px;
+        }
+
+        .brand img {
+          width: 118px;
+        }
+
+        .hero__content {
+          gap: 28px;
+          padding: 38px 0 30px;
+        }
+
+        .hero-panel {
+          display: none;
+        }
+
+        h1 {
+          max-width: 9ch;
+          font-size: 42px;
+        }
+
+        .hero__lead {
+          font-size: 16px;
+          max-width: 31ch;
+        }
+
+        .hero__actions {
+          display: grid;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .hero-panel__row {
+          grid-template-columns: 76px 1fr;
+          padding: 14px;
+        }
+
+        .hero-panel img {
+          width: 76px;
+          height: 68px;
+        }
+
+        .proof__grid,
+        .services,
+        .materials {
+          grid-template-columns: 1fr;
+        }
+
+        .proof__item,
+        .proof__item:last-child {
+          border-right: 1px solid var(--line);
+        }
+
+        .section {
+          padding: 64px 0;
+        }
+
+        .section__head h2,
+        .atelier h2,
+        .quote h2 {
+          font-size: 42px;
+        }
+
+        .atelier__note {
+          position: static;
+          width: auto;
+          margin-top: 14px;
+        }
+
+        .footer__inner {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar__inner">
+        <a class="brand" href="/" aria-label="Prestige Nautic">
+          <img src="assets/logo-prestige-nautic.webp" alt="Prestige Nautic" width="160" height="48">
+        </a>
+        <nav class="nav" aria-label="Navigation principale">
+          <a href="#prestations">Prestations</a>
+          <a href="#approche">Savoir-faire</a>
+          <a href="#matieres">Matieres</a>
+          <a href="#devis" class="nav__cta">Demander un devis</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__media">
+          <img src="assets/photo-yacht-luxe-1.webp" alt="Yacht en chantier nautique haut de gamme sur la Cote d'Azur">
+        </div>
+        <div class="shell hero__content">
+          <div>
+            <p class="eyebrow">Toulon - Cote d'Azur</p>
+            <h1 id="hero-title">Prestige Nautic</h1>
+            <p class="hero__lead">
+              Artisan nautique haut de gamme pour la pose de teck, le vaigrage,
+              le refit integral et la soudure inox sur mesure.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--gold" href="#devis">Etudier mon projet</a>
+              <a class="btn btn--ghost" href="#prestations">Voir les prestations</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Prestations phares">
+            <div class="hero-panel__row">
+              <img src="assets/teck-synthetique.webp" alt="Pont de bateau en teck synthetique">
+              <p><strong>Teck sur mesure</strong><span>Pose, calepinage et finitions adaptees aux lignes du bateau.</span></p>
+            </div>
+            <div class="hero-panel__row">
+              <img src="assets/vaigrage-finition-interieure.webp" alt="Vaigrage interieur de bateau">
+              <p><strong>Interieurs refaits</strong><span>Vaigrage cuir ou tissu, confort et rendu premium en cabine.</span></p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="proof" aria-label="Reperes de confiance">
+        <div class="shell proof__grid">
+          <div class="proof__item"><b>100%</b><span>Sur mesure selon le bateau</span></div>
+          <div class="proof__item"><b>A+</b><span>Materiaux selectionnes</span></div>
+          <div class="proof__item"><b>1:1</b><span>Suivi direct du chantier</span></div>
+          <div class="proof__item"><b>83</b><span>Base Toulon, intervention Riviera</span></div>
+        </div>
+      </section>
+
+      <section class="section section--navy" id="prestations">
+        <div class="shell">
+          <div class="section__head">
+            <div>
+              <p class="eyebrow">Prestations</p>
+              <h2>Une selection de savoir-faire nautiques.</h2>
+            </div>
+            <p>
+              La page met les services au niveau d'une maison artisanale premium :
+              peu de bruit visuel, des images franches, et une hierarchie qui guide
+              rapidement vers la demande de devis.
+            </p>
+          </div>
+
+          <div class="services">
+            <a class="service" href="/pages/teck-synthetique">
+              <img src="assets/teck-synthetique.webp" alt="Teck synthetique sur bateau">
+              <span class="service__copy">
+                <small>01</small>
+                <h3>Teck synthetique</h3>
+                <p>Durable, propre, elegant, configure selon le rendu recherche.</p>
+              </span>
+            </a>
+            <a class="service" href="/pages/teck-naturel">
+              <img src="assets/teck-naturel.webp" alt="Teck naturel nautique">
+              <span class="service__copy">
+                <small>02</small>
+                <h3>Teck naturel</h3>
+                <p>Un rendu noble pour les proprietaires exigeants.</p>
+              </span>
+            </a>
+            <a class="service" href="/pages/vaigrage">
+              <img src="assets/vaigrage.webp" alt="Vaigrage interieur bateau">
+              <span class="service__copy">
+                <small>03</small>
+                <h3>Vaigrage</h3>
+                <p>Cuir, tissu et finitions pour cabines et espaces interieurs.</p>
+              </span>
+            </a>
+            <a class="service" href="/pages/refit-integral">
+              <img src="assets/refit-integral-luxe.webp" alt="Refit integral de yacht">
+              <span class="service__copy">
+                <small>04</small>
+                <h3>Refit integral</h3>
+                <p>Une remise a niveau coherente, du pont aux details.</p>
+              </span>
+            </a>
+            <a class="service" href="/pages/soudure-inox">
+              <img src="assets/soudure-inox.webp" alt="Soudure inox sur mesure">
+              <span class="service__copy">
+                <small>05</small>
+                <h3>Inox sur mesure</h3>
+                <p>Pieces, supports et finitions adaptes aux contraintes marines.</p>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ivory" id="approche">
+        <div class="shell atelier">
+          <div class="atelier__image">
+            <img src="assets/soudure-plage-bain-elysium.webp" alt="Detail de chantier nautique premium">
+            <div class="atelier__note">
+              <b>Le detail avant le decor.</b>
+              <span>Alignements, joints, resistance marine et sensation au toucher.</span>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">Approche chantier</p>
+            <h2>Un parcours plus rassurant pour un achat exigeant.</h2>
+            <p>
+              Pour une prestation luxe, le site doit moins empiler les arguments et mieux
+              cadrer la confiance : diagnostic, recommandation matiere, execution,
+              controle et livraison. Cette structure reduit l'effort de decision et
+              rend le devis plus naturel.
+            </p>
+            <div class="steps" aria-label="Etapes de projet">
+              <div class="step">
+                <b>01</b>
+                <span><strong>Diagnostic</strong>Photos, bateau, usage, contraintes et niveau de finition attendu.</span>
+              </div>
+              <div class="step">
+                <b>02</b>
+                <span><strong>Selection</strong>Conseil matiere, teinte, joint, cuir ou inox selon le projet.</span>
+              </div>
+              <div class="step">
+                <b>03</b>
+                <span><strong>Execution</strong>Pose et controle des details avec un interlocuteur unique.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--navy" id="matieres">
+        <div class="shell">
+          <div class="section__head">
+            <div>
+              <p class="eyebrow">Matieres et finitions</p>
+              <h2>Montrer la qualite avant de la promettre.</h2>
+            </div>
+            <p>
+              Les images sont plus grandes, les textes plus courts et chaque bloc porte
+              une promesse concrete : tenue, confort, precision, personnalisation.
+            </p>
+          </div>
+
+          <div class="materials">
+            <article class="material">
+              <img src="assets/configurateur/bateau/rendu/teak-black.webp" alt="Rendu teck avec joint noir">
+              <div class="material__copy">
+                <h3>Teck et joints</h3>
+                <p>Rendus contrastes, clairs ou naturels, avec choix guide selon l'usage.</p>
+              </div>
+            </article>
+            <article class="material">
+              <img src="assets/vaigrage-fauteuil-prestige.webp" alt="Finition interieure prestige">
+              <div class="material__copy">
+                <h3>Cabine et confort</h3>
+                <p>Textures, assises et parois travaillees comme un interieur de yacht.</p>
+              </div>
+            </article>
+            <article class="material">
+              <img src="assets/soudure-table-inox.webp" alt="Piece inox sur mesure">
+              <div class="material__copy">
+                <h3>Inox marin</h3>
+                <p>Pieces fonctionnelles avec une finition nette et durable.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ivory" id="devis">
+        <div class="shell quote">
+          <div>
+            <p class="eyebrow">Etude personnalisee</p>
+            <h2>Un devis qui commence par comprendre le bateau.</h2>
+            <p>
+              Le formulaire est volontairement court : il qualifie le projet sans casser
+              l'elan. Les informations plus techniques peuvent venir ensuite par echange
+              direct, ce qui garde une perception haut de gamme et humaine.
+            </p>
+            <div class="quote__contact">
+              <a href="mailto:prestige.nautic@gmail.com">prestige.nautic@gmail.com</a>
+              <a href="tel:+33783345950">07 83 34 59 50</a>
+              <span>Toulon - intervention de Marseille a Monaco</span>
+            </div>
+          </div>
+          <form class="form">
+            <label>
+              Nom
+              <input type="text" name="name" placeholder="Votre nom">
+            </label>
+            <label>
+              Prestation
+              <input type="text" name="service" placeholder="Teck, vaigrage, refit, inox...">
+            </label>
+            <label>
+              Bateau et port
+              <input type="text" name="boat" placeholder="Modele, longueur, localisation">
+            </label>
+            <label>
+              Projet
+              <textarea name="message" placeholder="Decrivez le besoin, les delais et le niveau de finition souhaite"></textarea>
+            </label>
+            <button class="btn btn--navy" type="button">Preparer ma demande</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <span>Prestige Nautic - Artisan nautique haut de gamme sur la Cote d'Azur</span>
+        <a href="/">Retour au site actuel</a>
+      </div>
+    </footer>
+  </body>
+</html>

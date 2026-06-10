@@ -93,15 +93,10 @@ export default function CookieConsent() {
         {view === "banner" ? (
           <>
             <div className="cookie-panel__body">
-              <h2 id="cookie-title" className="cookie-panel__title">
-                Nous respectons votre vie privée
-              </h2>
               <p id="cookie-desc" className="cookie-panel__text">
-                Ce site utilise des cookies strictement nécessaires à son fonctionnement et,
-                avec votre accord, des cookies de mesure d&apos;audience (Google Analytics) pour
-                comprendre comment il est utilisé. Vous pouvez accepter, refuser ou
-                personnaliser vos choix. Voir notre{" "}
-                <Link href="/pages/politique-confidentialite">politique de confidentialité</Link>.
+                <span id="cookie-title" className="cookie-banner__lead">🍪 Cookies</span>{" "}
+                Nous utilisons des cookies de mesure d&apos;audience, avec votre accord.{" "}
+                <Link href="/pages/politique-confidentialite">En savoir plus</Link>
               </p>
             </div>
             <div className="cookie-panel__actions">
@@ -111,10 +106,10 @@ export default function CookieConsent() {
                 onClick={acceptAll}
                 ref={acceptBtnRef}
               >
-                Tout accepter
+                Accepter
               </button>
-              <button type="button" className="btn btn--secondary cookie-btn cookie-btn--light" onClick={refuseAll}>
-                Tout refuser
+              <button type="button" className="cookie-btn cookie-btn--ghost" onClick={refuseAll}>
+                Refuser
               </button>
               <button
                 type="button"

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Configurator from "@/components/Configurator";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Configurateur teck synthétique bateau | Prestige Nautic",
   description:
     "Configurateur de teck synthétique Prestige Nautic : visualisez en temps réel les teintes et couleurs de joint sur un bateau. Artisan à Toulon.",
-  alternates: { canonical: "https://prestigenautic.com/pages/configurateur.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/configurateur" },
   openGraph: {
-    url: "https://prestigenautic.com/pages/configurateur.html",
+    url: "https://prestigenautic.com/pages/configurateur",
     title: "Configurateur teck synthétique bateau | Prestige Nautic",
     description:
       "Visualisez votre pont en teck synthétique : teintes et joints au choix, rendu en temps réel. Artisan nautique à Toulon — Côte d'Azur.",
@@ -24,7 +25,7 @@ const breadcrumbJsonLd = {
       "@type": "ListItem",
       position: 2,
       name: "Configurateur teck synthétique",
-      item: "https://prestigenautic.com/pages/configurateur.html",
+      item: "https://prestigenautic.com/pages/configurateur",
     },
   ],
 };
@@ -37,6 +38,7 @@ export default function ConfigurateurPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Configurator />
+      <Footer />
     </>
   );
 }

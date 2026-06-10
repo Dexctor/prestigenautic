@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Refit intégral bateau Toulon & Côte d'Azur | Prestige Nautic",
   description:
     "Refit intégral de yacht sur la Côte d'Azur : vaigrage, boiseries, inox, sellerie, Starlink, LED, covering et enceintes marine. Devis gratuit.",
-  alternates: { canonical: "https://prestigenautic.com/pages/refit-integral.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/refit-integral" },
   openGraph: {
-    url: "https://prestigenautic.com/pages/refit-integral.html",
+    url: "https://prestigenautic.com/pages/refit-integral",
     title: "Refit intégral bateau Toulon & Côte d'Azur | Prestige Nautic",
     description:
       "Refit intégral de yacht sur la Côte d'Azur : vaigrage, boiseries, inox, sellerie, Starlink, LED, covering et enceintes marine. Devis gratuit.",
@@ -20,7 +20,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Refit intégral", item: "https://prestigenautic.com/pages/refit-integral.html" },
+    { "@type": "ListItem", position: 2, name: "Refit intégral", item: "https://prestigenautic.com/pages/refit-integral" },
   ],
 };
 

@@ -1,5 +1,18 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { isValidElement, type ReactNode } from "react";
+import Reveal from "@/components/Reveal";
+
+/** Extrait le texte brut d'un ReactNode (pour générer le JSON-LD FAQ). */
+function nodeToText(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(nodeToText).join("");
+  if (isValidElement(node)) {
+    const props = node.props as { children?: ReactNode };
+    return nodeToText(props.children);
+  }
+  return "";
+}
 
 export type Avantage = { icon: ReactNode; title: string; text: string };
 export type ProcessStep = { title: string; text: string };
@@ -52,8 +65,29 @@ function btnClass(variant: "gold" | "secondary" | "primary") {
 }
 
 export default function PrestationLayout(data: PrestationData) {
+  // FAQPage JSON-LD généré automatiquement depuis les Q/R de la page
+  // (texte extrait des ReactNode pour rester synchronisé avec l'affichage).
+  const faqJsonLd =
+    data.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: data.faq.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: { "@type": "Answer", text: nodeToText(item.a) },
+          })),
+        }
+      : null;
+
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       {/* HERO */}
       <section className="prestation-hero">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -90,28 +124,28 @@ export default function PrestationLayout(data: PrestationData) {
       <section className="section" style={{ background: "var(--bg-soft)" }}>
         <div className="container">
           <div className="section-grid">
-            <div className="section-text">
+            <Reveal className="section-text">
               <span className="section-eyebrow">{data.introEyebrow}</span>
               <h2>{data.introTitle}</h2>
               {data.introParagraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
-            </div>
-            <div className="section-media">
+            </Reveal>
+            <Reveal className="section-media" delay={0.1}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={data.introImg.src} alt={data.introImg.alt} loading="lazy" decoding="async" width={800} height={600} />
-            </div>
+            </Reveal>
           </div>
 
           <div className="avantages-grid">
             {data.avantages.map((av, i) => (
-              <div className="avantage-card" key={i}>
+              <Reveal as="div" className="avantage-card" key={i} delay={i * 0.08}>
                 <span className="avantage-card__icon" aria-hidden="true">
                   {av.icon}
                 </span>
                 <div className="avantage-card__title">{av.title}</div>
                 <p className="avantage-card__text">{av.text}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -169,17 +203,17 @@ export default function PrestationLayout(data: PrestationData) {
       {/* PROCESS */}
       <section className="section" style={{ background: "var(--bg-soft)" }}>
         <div className="container">
-          <div className="section-head">
+          <Reveal className="section-head">
             <span className="section-eyebrow">{data.processEyebrow}</span>
             <h2>{data.processTitle}</h2>
             <p>{data.processIntro}</p>
-          </div>
+          </Reveal>
           <div className="process-steps">
             {data.processSteps.map((s, i) => (
               <div className="process-step" key={i}>
                 <div className="process-step__num" aria-hidden="true"></div>
                 <div className="process-step__body">
-                  <h4>{s.title}</h4>
+                  <h3>{s.title}</h3>
                   <p>{s.text}</p>
                 </div>
               </div>
@@ -191,10 +225,10 @@ export default function PrestationLayout(data: PrestationData) {
       {/* FAQ */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className="section-head">
+          <Reveal className="section-head">
             <span className="section-eyebrow">{data.faqEyebrow}</span>
             <h2>{data.faqTitle}</h2>
-          </div>
+          </Reveal>
           <div className="faq">
             {data.faq.map((item, i) => (
               <details className="faq-item" key={i}>

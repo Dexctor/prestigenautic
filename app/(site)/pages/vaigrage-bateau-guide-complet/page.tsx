@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ArticleToc from "@/components/ArticleToc";
 
 export const metadata: Metadata = {
   title: "Vaigrage de bateau : le guide complet | Prestige Nautic",
   description:
     "Tout savoir sur le vaigrage de bateau : matériaux (cuir, tissu, alcantara), étapes de pose, sur mesure ou kit. Guide d'un artisan à Toulon.",
-  alternates: { canonical: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet" },
   openGraph: {
     type: "article",
-    url: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet.html",
+    url: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet",
     title: "Vaigrage de bateau : guide complet sur l'habillage intérieur nautique",
     description:
       "Tout savoir sur le vaigrage de bateau : matériaux, étapes, sur mesure vs kit. Guide par un artisan nautique de Toulon, Côte d'Azur.",
@@ -33,7 +34,7 @@ const articleJsonLd = {
     name: "Prestige Nautic",
     logo: { "@type": "ImageObject", url: "https://prestigenautic.com/assets/logo-prestige-nautic.webp" },
   },
-  mainEntityOfPage: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet.html",
+  mainEntityOfPage: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet",
 };
 
 const breadcrumbJsonLd = {
@@ -41,8 +42,8 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Articles", item: "https://prestigenautic.com/articles.html" },
-    { "@type": "ListItem", position: 3, name: "Vaigrage de bateau : guide complet", item: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet.html" },
+    { "@type": "ListItem", position: 2, name: "Articles", item: "https://prestigenautic.com/articles" },
+    { "@type": "ListItem", position: 3, name: "Vaigrage de bateau : guide complet", item: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet" },
   ],
 };
 
@@ -107,7 +108,7 @@ const badgeStyle = {
 
 export default function VaigrageBateauGuideCompletPage() {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -132,6 +133,7 @@ export default function VaigrageBateauGuideCompletPage() {
       <section className="section" style={{ background: "var(--surface)" }}>
         <div className="container">
           <div className="article-prose">
+            <ArticleToc />
 
             <p>Le vaigrage, c&apos;est l&apos;habillage intérieur des parois d&apos;un bateau : les cloisons des cabines, les plafonds (que les marins appellent barrots ou barrotins), les coursives, les placards. Il joue un double rôle. Esthétique d&apos;abord : c&apos;est lui qui donne le ton à l&apos;intérieur du bord, qui crée cette première impression quand on descend dans la cabine. Fonctionnel ensuite : un bon vaigrage isole thermiquement et acoustiquement, réduit la condensation sur la coque et protège les structures.</p>
 

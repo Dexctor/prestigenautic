@@ -141,7 +141,13 @@ export default function Configurator() {
 
             <div className={`config-main-visualframe${mainLoading ? " is-loading" : ""}${mainUnavailable ? " frame-unavailable" : ""}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img id="configurator-image" src={mainSrc} alt="Vue principale du bateau avec teck synthétique" />
+              <img
+                id="configurator-image"
+                src={mainSrc}
+                alt={`Pont de bateau en teck synthétique Prestige Nautic — combinaison ${teck} / joint ${joint}`}
+                width={600}
+                height={800}
+              />
               <div className="img-placeholder" aria-hidden="true">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1" y="1" width="34" height="34" rx="4" stroke="currentColor" strokeWidth="2" />
@@ -173,7 +179,14 @@ export default function Configurator() {
 
             <div className={`zoom-image-frame${zoomLoading ? " is-loading" : ""}${zoomUnavailable ? " frame-unavailable" : ""}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img id="zoom-image" src={zoomSrc} alt="Aperçu matière" loading="lazy" />
+              <img
+                id="zoom-image"
+                src={zoomSrc}
+                alt={`Détail matière teck synthétique ${teck} avec joint ${joint} — Prestige Nautic`}
+                width={800}
+                height={788}
+                loading="lazy"
+              />
               <div className="img-placeholder" aria-hidden="true">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1" y="1" width="34" height="34" rx="4" stroke="currentColor" strokeWidth="2" />
@@ -274,7 +287,14 @@ export default function Configurator() {
           ×
         </button>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img id="material-modal-image" className="image-modal__image" src={zoomSrc} alt="Aperçu matière agrandi" />
+        <img
+          id="material-modal-image"
+          className="image-modal__image"
+          src={zoomSrc}
+          alt={`Aperçu agrandi du teck synthétique ${teck} avec joint ${joint} — Prestige Nautic`}
+          width={800}
+          height={788}
+        />
       </div>
     </main>
   );

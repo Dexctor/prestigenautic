@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Pose teck synthétique bateau | Prestige Nautic — Côte d'Azur",
   description:
     "Pose de teck synthétique pour yachts et bateaux sur la Côte d'Azur. Artisan à Toulon : finitions premium, durabilité marine, entretien minimal. Devis gratuit.",
-  alternates: { canonical: "https://prestigenautic.com/pages/teck-synthetique.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/teck-synthetique" },
   openGraph: {
-    url: "https://prestigenautic.com/pages/teck-synthetique.html",
+    url: "https://prestigenautic.com/pages/teck-synthetique",
     title: "Pose teck synthétique bateau | Prestige Nautic — Côte d'Azur",
     description:
       "Spécialiste de la pose de teck synthétique sur yachts et bateaux. Intervention sur toute la Côte d'Azur. Devis gratuit.",
@@ -15,44 +15,38 @@ export const metadata: Metadata = {
   },
 };
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Le teck synthétique glisse-t-il quand le pont est mouillé ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Non. La surface est striée et conçue pour rester antidérapante, même mouillée — souvent plus sûre que le teck naturel verni. C'est un vrai atout de sécurité pour l'équipage comme pour les passagers.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Quelle est la durée de vie d'un pont en teck synthétique ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "En conditions méditerranéennes (UV, sel, chaleur), un teck synthétique de qualité posé dans les règles dépasse facilement 15 ans, sans le grisaillement ni les fissures du bois naturel.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Quel entretien faut-il prévoir ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Quasiment aucun : pas de ponçage, pas d'huile ni de traitement annuel. Un simple nettoyage à l'eau savonneuse suffit à conserver l'aspect d'origine.",
-      },
-    },
-  ],
-};
-
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Teck synthétique", item: "https://prestigenautic.com/pages/teck-synthetique.html" },
+    { "@type": "ListItem", position: 2, name: "Teck synthétique", item: "https://prestigenautic.com/pages/teck-synthetique" },
   ],
+};
+
+// Service + Offer : le tarif « à partir de 580 €/m² » est désormais structuré.
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Pose de teck synthétique pour bateau",
+  name: "Pose de teck synthétique sur yacht et bateau",
+  description:
+    "Pose et installation de teck synthétique sur pont de yacht et bateau. Matériaux haut de gamme, finitions soignées, durabilité marine.",
+  provider: { "@type": "ProfessionalService", name: "Prestige Nautic", "@id": "https://prestigenautic.com/#organization" },
+  areaServed: { "@type": "Place", name: "Côte d'Azur" },
+  url: "https://prestigenautic.com/pages/teck-synthetique",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "EUR",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: 580,
+      priceCurrency: "EUR",
+      unitText: "m²",
+      referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MTK" },
+    },
+    availability: "https://schema.org/InStock",
+  },
 };
 
 // Icônes (reproduites du site original)
@@ -89,8 +83,9 @@ const IconAntiderapant = (
 export default function TeckSynthetiquePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      {/* Le FAQPage JSON-LD est généré automatiquement par PrestationLayout. */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <PrestationLayout
         breadcrumb="Teck synthétique"
         heroTitle={<>Pose de <em>teck synthétique</em> sur yacht et bateau</>}

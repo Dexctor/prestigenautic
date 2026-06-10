@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Vaigrage bateau sur mesure | Prestige Nautic — Côte d'Azur",
   description:
     "Pose de vaigrage intérieur pour yachts et bateaux. Artisan à Toulon : isolation, esthétique premium, matériaux haut de gamme. Devis gratuit.",
-  alternates: { canonical: "https://prestigenautic.com/pages/vaigrage.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/vaigrage" },
   openGraph: {
-    url: "https://prestigenautic.com/pages/vaigrage.html",
+    url: "https://prestigenautic.com/pages/vaigrage",
     title: "Vaigrage bateau sur mesure | Prestige Nautic — Côte d'Azur",
     description:
       "Pose de vaigrage intérieur sur mesure pour yachts et bateaux. Artisan à Toulon, intervention sur toute la Côte d'Azur.",
@@ -20,7 +20,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Vaigrage", item: "https://prestigenautic.com/pages/vaigrage.html" },
+    { "@type": "ListItem", position: 2, name: "Vaigrage", item: "https://prestigenautic.com/pages/vaigrage" },
   ],
 };
 

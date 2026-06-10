@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ArticleToc from "@/components/ArticleToc";
 
 export const metadata: Metadata = {
   title: "Entretien du teck de bateau : le guide | Prestige Nautic",
   description:
     "Guide complet pour entretenir le teck de votre bateau : nettoyage, dégrisage, huilage et erreurs à éviter. Conseils d'artisan à Toulon.",
-  alternates: { canonical: "https://prestigenautic.com/pages/entretien-teck-bateau.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/entretien-teck-bateau" },
   openGraph: {
     type: "article",
-    url: "https://prestigenautic.com/pages/entretien-teck-bateau.html",
+    url: "https://prestigenautic.com/pages/entretien-teck-bateau",
     title: "Comment entretenir son teck de bateau : guide complet",
     description:
       "Guide complet pour entretenir le teck de votre bateau : nettoyage, dégrisage, huilage, erreurs à éviter. Conseils d'artisan nautique depuis Toulon — Côte d'Azur.",
@@ -33,7 +34,7 @@ const articleJsonLd = {
     name: "Prestige Nautic",
     logo: { "@type": "ImageObject", url: "https://prestigenautic.com/assets/logo-prestige-nautic.webp" },
   },
-  mainEntityOfPage: "https://prestigenautic.com/pages/entretien-teck-bateau.html",
+  mainEntityOfPage: "https://prestigenautic.com/pages/entretien-teck-bateau",
 };
 
 const breadcrumbJsonLd = {
@@ -41,8 +42,8 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Articles", item: "https://prestigenautic.com/articles.html" },
-    { "@type": "ListItem", position: 3, name: "Comment entretenir son teck de bateau", item: "https://prestigenautic.com/pages/entretien-teck-bateau.html" },
+    { "@type": "ListItem", position: 2, name: "Articles", item: "https://prestigenautic.com/articles" },
+    { "@type": "ListItem", position: 3, name: "Comment entretenir son teck de bateau", item: "https://prestigenautic.com/pages/entretien-teck-bateau" },
   ],
 };
 
@@ -95,7 +96,7 @@ const faqJsonLd = {
 
 export default function EntretienTeckBateauPage() {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -120,6 +121,7 @@ export default function EntretienTeckBateauPage() {
       <section className="section" style={{ background: "var(--surface)" }}>
         <div className="container">
           <div className="article-prose">
+            <ArticleToc />
 
             <p>Le pont d&apos;un bateau naviguant en Méditerranée subit des agressions particulièrement sévères : UV intenses de juin à septembre, embruns salés, condensation nocturne, passages répétés de semelles. Sans entretien adapté, même le plus beau pont en teck se dégrade bien plus vite que nécessaire. Ce guide s&apos;adresse à tous les propriétaires du Var et des Alpes-Maritimes qui souhaitent comprendre les bons gestes — que leur pont soit en <Link href="/pages/teck-naturel">teck naturel</Link> ou en <Link href="/pages/teck-synthetique">teck synthétique</Link>.</p>
 

@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: "Mentions légales | Prestige Nautic",
   description:
     "Mentions légales du site Prestige Nautic — artisan nautique à Toulon (Var) : teck, vaigrage, refit et inox sur la Côte d'Azur.",
-  alternates: { canonical: "https://prestigenautic.com/pages/mentions-legales.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/mentions-legales" },
 };
 
 export default function MentionsLegalesPage() {
   return (
-    <main className="legal-page">
+    <main className="legal-page" id="main-content" tabIndex={-1}>
       <div className="legal-shell">
         <Link className="legal-back" href="/">
           ← Retour au site

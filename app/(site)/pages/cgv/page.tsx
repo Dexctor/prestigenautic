@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: "Conditions Générales de Vente | Prestige Nautic",
   description:
     "Conditions générales de vente de Prestige Nautic, artisan nautique à Toulon : devis, paiement, délais, garanties et exécution des chantiers.",
-  alternates: { canonical: "https://prestigenautic.com/pages/cgv.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/cgv" },
 };
 
 export default function CgvPage() {
   return (
-    <main className="legal-page">
+    <main className="legal-page" id="main-content" tabIndex={-1}>
       <div className="legal-shell">
         <Link className="legal-back" href="/">
           ← Retour au site
@@ -216,7 +216,7 @@ export default function CgvPage() {
             peut recourir gratuitement à un médiateur de la consommation.
             Prestige Nautic adhère au service de médiation <strong>CM2C</strong>{" "}
             —{" "}
-            <a href="https://www.cm2c.net" target="_blank" rel="noopener">
+            <a href="https://www.cm2c.net" target="_blank" rel="noopener noreferrer">
               www.cm2c.net
             </a>
             .

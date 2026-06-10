@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Politique de confidentialité de Prestige Nautic : données collectées via le formulaire de devis, conservation et exercice de vos droits (RGPD).",
   alternates: {
-    canonical: "https://prestigenautic.com/pages/politique-confidentialite.html",
+    canonical: "https://prestigenautic.com/pages/politique-confidentialite",
   },
 };
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <main className="legal-page">
+    <main className="legal-page" id="main-content" tabIndex={-1}>
       <div className="legal-shell">
         <Link className="legal-back" href="/">
           ← Retour au site
@@ -167,7 +167,7 @@ export default function PolitiqueConfidentialitePage() {
             En cas de réponse insatisfaisante, vous disposez du droit
             d&apos;introduire une réclamation auprès de la <strong>CNIL</strong>{" "}
             (
-            <a href="https://www.cnil.fr" target="_blank" rel="noopener">
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">
               www.cnil.fr
             </a>
             ).

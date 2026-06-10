@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/#services", label: "Prestations" },
@@ -14,6 +15,15 @@ const NAV_LINKS = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Le lien est "courant" si son chemin de page correspond à l'URL actuelle.
+  // (On ignore les ancres de la home : pas de page dédiée.)
+  function isCurrent(href: string): boolean {
+    if (href.startsWith("/#")) return false;
+    return pathname === href;
+  }
 
   // Fermer au clavier (Échap) et au redimensionnement vers desktop
   useEffect(() => {
@@ -39,8 +49,18 @@ export default function Header() {
     };
   }, [open]);
 
+  // Compactage de la navbar au défilement (hauteur + logo réduits).
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 30);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="site-header">
+    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
       <div className="container site-header__inner">
         <Link href="/" className="brand" aria-label="Retour à l'accueil Prestige Nautic">
           <div className="brand__logo">
@@ -74,7 +94,12 @@ export default function Header() {
           aria-label="Navigation principale"
         >
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              aria-current={isCurrent(link.href) ? "page" : undefined}
+            >
               {link.label}
             </Link>
           ))}

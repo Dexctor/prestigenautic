@@ -42,21 +42,29 @@
   background: linear-gradient(90deg, transparent, var(--gold, #b8924e) 50%, transparent);
 }
 
+/* Bannière compacte, ancrée en bas à gauche, discrète */
 .cookie-panel--banner {
-  left: 50%;
+  left: clamp(0.75rem, 2vw, 1.5rem);
   bottom: clamp(0.75rem, 2vw, 1.5rem);
-  transform: translateX(-50%);
-  width: min(100% - 1.5rem, 880px);
-  border-radius: var(--radius-lg, 20px);
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  width: min(100% - 1.5rem, 380px);
+  border-radius: var(--radius-md, 14px);
+  padding: 1.1rem 1.15rem;
   display: grid;
-  gap: 1.25rem;
+  gap: 0.85rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
   animation: cookieSlideUp 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 @keyframes cookieSlideUp {
-  from { opacity: 0; transform: translate(-50%, 16px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Petit intitulé en tête du texte de la bannière compacte */
+.cookie-banner__lead {
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
 }
 
 /* --- Modale de préférences (centrée) --- */
@@ -92,6 +100,11 @@
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.74);
 }
+/* Texte plus compact dans la bannière réduite */
+.cookie-panel--banner .cookie-panel__text {
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
 .cookie-panel__text a {
   color: var(--gold-light, #d4b876);
   text-decoration: underline;
@@ -107,11 +120,26 @@
   align-items: center;
   gap: 0.75rem;
 }
+/* Rangée d'actions resserrée dans la bannière compacte */
+.cookie-panel--banner .cookie-panel__actions {
+  gap: 0.4rem 0.6rem;
+}
+.cookie-panel--banner .cookie-link-btn {
+  font-size: 0.78rem;
+  padding: 0.5rem 0.3rem;
+  margin-left: auto;
+}
 
 .cookie-btn {
   min-height: 46px;
   padding: 0.7rem 1.4rem;
   font-size: 0.84rem;
+}
+/* Boutons compacts dans la bannière réduite */
+.cookie-panel--banner .cookie-btn {
+  min-height: 38px;
+  padding: 0.5rem 1.05rem;
+  font-size: 0.78rem;
 }
 /* Variante claire du bouton secondaire pour rester lisible sur navy */
 .cookie-btn--light {
@@ -122,6 +150,24 @@
 .cookie-btn--light:hover {
   background: rgba(255, 255, 255, 0.18);
   border-color: rgba(255, 255, 255, 0.5);
+}
+/* Bouton "Refuser" discret (sans fond) pour la bannière compacte */
+.cookie-btn--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill, 999px);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.cookie-btn--ghost:hover,
+.cookie-btn--ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  outline: none;
 }
 
 .cookie-link-btn {

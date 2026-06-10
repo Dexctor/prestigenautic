@@ -2,20 +2,39 @@
 @import "./site.css";
 @import "./pages-content.css";
 @import "./cookies.css";
+@import "./a11y.css";
+@import "./ui.css";
 
 /* ============================================================
    Liaison des polices next/font avec le CSS du site
-   Les variables --font-cormorant et --font-inter sont injectées
-   par next/font (voir app/layout.tsx). On les branche sur les
-   familles nommées utilisées dans site.css.
+   Les variables --font-cormorant (titres) et --font-body (corps : Jost)
+   sont injectées par next/font (voir app/layout.tsx). On les branche
+   sur les familles nommées utilisées dans le CSS.
    ============================================================ */
 :root {
-  --font-cormorant-stack: var(--font-cormorant), 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
-  --font-inter-stack: var(--font-inter), 'Inter', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Titres : Manrope, sans-serif moderne et caractériel. */
+  --font-display-stack: var(--font-display), 'Manrope', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Accents : même police que les titres (mise en avant par couleur/graisse). */
+  --font-cormorant-stack: var(--font-display), 'Manrope', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Corps : Inter, sans-serif neutre et très lisible. */
+  --font-inter-stack: var(--font-body), 'Inter', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 
 body {
   font-family: var(--font-inter-stack);
+}
+
+/* ============================================================
+   Correctif hover des boutons primaires : le pseudo-élément ::after
+   (calque dégradé au survol) recouvrait le texte lorsqu'il est placé
+   directement dans le bouton (sans <span> enfant). On isole le bouton
+   et on place le calque sous le contenu.
+   ============================================================ */
+.btn--primary {
+  isolation: isolate;
+}
+.btn--primary::after {
+  z-index: -1;
 }
 
 /* ============================================================
@@ -38,33 +57,107 @@ body {
   max-width: none;
 }
 
-/* On force les titres (qui utilisent 'Cormorant Garamond' dans le CSS)
-   à passer par la variable next/font, sans réécrire tout le CSS.
-   Plus robuste : on cible toute famille Cormorant déclarée. */
+/* Alignement « carré dans l'axe » : sur desktop, le texte du hero doit
+   commencer exactement sur le même axe gauche que le contenu des sections
+   (bord du conteneur 1200px), et non décalé de +2.5rem comme à l'origine. */
+@media (min-width: 900px) {
+  .hero .hero__content.container {
+    padding-left: max(1.25rem, calc((100vw - var(--container)) / 2));
+    padding-right: max(1.25rem, calc((100vw - var(--container)) / 2));
+  }
+}
+
+/* Sous 900px, le CSS d'origine met padding: 6rem 0 4rem (donc 0 en latéral).
+   Comme on a retiré la largeur de la .container, il faut rétablir une marge
+   latérale pour que le titre ne soit pas collé au bord sur mobile.
+   On cible depuis .hero pour passer devant le raccourci d'origine. */
+@media (max-width: 899px) {
+  .hero .hero__content.container {
+    padding: 6rem 1.5rem 4rem;
+  }
+}
+@media (max-width: 480px) {
+  .hero .hero__content.container {
+    padding: 5rem 1.25rem 3.5rem;
+  }
+}
+
+/* ============================================================
+   TITRES — Manrope, sans-serif moderne et caractériel.
+   Registre premium contemporain : graisses fortes, interlettrage serré,
+   bas-de-casse. Net et confiant, pas « template élégant ».
+   ============================================================ */
+
+/* — H1 HERO → Manrope, forte présence. */
 .hero h1,
+.prestation-hero h1 {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+}
+
+/* — TOUS LES AUTRES TITRES → Manrope. */
+.guide-hero h1,
+.articles-hero h1,
+.legal-page h1,
+.configurator-heading h1,
 .section-head h2,
 .section-text h2,
+.devis-cta h2,
+.faq-section h2,
+.article-prose h2,
 .service-card__title,
 .value-item__num,
-.configurator-heading h1,
 .config-zoom-panel h2,
 .config-choice-panel h2,
 .choice-column h3,
-.prestation-hero h1,
 .avantage-card__title,
-.devis-cta h2,
 .config-cta__text h3,
 .refit-group__title,
-.guide-hero h1,
-.articles-hero h1,
 .article-card__title,
-.article-prose h2,
 .article-prose h3,
 .matiere-card__title,
 .compare-card__title,
 .profil-card h3,
-.step-card__title,
-.legal-page h1,
-.faq-section h2 {
+.step-card__title {
   font-family: var(--font-cormorant-stack);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+/* Présence des H2 de section et des autres H1 (Manrope, graisse forte). */
+.section-head h2,
+.section-text h2,
+.devis-cta h2,
+.faq-section h2,
+.guide-hero h1,
+.articles-hero h1,
+.legal-page h1,
+.configurator-heading h1 {
+  font-weight: 700;
+  line-height: 1.12;
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
+}
+
+/* — ACCENTS dans les titres : mise en avant SOBRE (pas d'italique clinquant).
+   Même police et graisse que le titre, juste une nuance dorée discrète. */
+.hero h1 em,
+.prestation-hero h1 em,
+.guide-hero h1 em,
+.articles-hero h1 em,
+.configurator-heading h1 em,
+.section-head h2 em,
+.section-text h2 em,
+.devis-cta h2 em,
+.faq-section h2 em,
+.article-prose h2 em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  text-transform: none;
+  letter-spacing: inherit;
+  color: var(--gold, #b8924e);
 }

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ArticleToc from "@/components/ArticleToc";
 
 export const metadata: Metadata = {
   title: "Teck synthétique ou naturel pour bateau | Prestige Nautic",
   description:
     "Teck synthétique ou teck naturel pour le pont de votre bateau ? Comparatif aspect, entretien, durabilité et prix. Le guide Prestige Nautic, Toulon.",
-  alternates: { canonical: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel" },
   openGraph: {
     type: "article",
-    url: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel.html",
+    url: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel",
     title: "Teck synthétique ou teck naturel : quel pont choisir ?",
     description:
       "Comparatif complet teck synthétique vs teck naturel : aspect, entretien, durabilité, prix et confort. Le guide de Prestige Nautic.",
@@ -33,7 +34,7 @@ const articleJsonLd = {
     name: "Prestige Nautic",
     logo: { "@type": "ImageObject", url: "https://prestigenautic.com/assets/logo-prestige-nautic.webp" },
   },
-  mainEntityOfPage: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel.html",
+  mainEntityOfPage: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel",
 };
 
 const breadcrumbJsonLd = {
@@ -41,7 +42,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Teck synthétique ou teck naturel", item: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel.html" },
+    { "@type": "ListItem", position: 2, name: "Teck synthétique ou teck naturel", item: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel" },
   ],
 };
 
@@ -78,7 +79,7 @@ const faqJsonLd = {
 
 export default function TeckSynthetiqueOuNaturelPage() {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -100,6 +101,7 @@ export default function TeckSynthetiqueOuNaturelPage() {
       <section className="section" style={{ background: "var(--surface)" }}>
         <div className="container">
           <div className="article-prose">
+            <ArticleToc />
             <p>Refaire le pont d&apos;un bateau est un investissement qui se vit pendant des années. Entre le <Link href="/pages/teck-synthetique">teck synthétique</Link> et le <Link href="/pages/teck-naturel">teck naturel</Link>, il n&apos;y a pas de « meilleur » choix dans l&apos;absolu : il y a le choix le plus adapté à votre usage, à votre budget et au temps que vous souhaitez consacrer à l&apos;entretien. Voyons les différences concrètes.</p>
 
             <h2>Le comparatif <em>critère par critère</em></h2>

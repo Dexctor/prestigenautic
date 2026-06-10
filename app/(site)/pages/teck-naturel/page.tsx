@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Pose teck naturel bateau | Prestige Nautic — Côte d'Azur",
   description:
     "Pose et rénovation de teck naturel pour yachts et bateaux. Artisan à Toulon : finitions authentiques, bois haut de gamme. Côte d'Azur. Devis gratuit.",
-  alternates: { canonical: "https://prestigenautic.com/pages/teck-naturel.html" },
+  alternates: { canonical: "https://prestigenautic.com/pages/teck-naturel" },
   openGraph: {
-    url: "https://prestigenautic.com/pages/teck-naturel.html",
+    url: "https://prestigenautic.com/pages/teck-naturel",
     title: "Pose teck naturel bateau | Prestige Nautic — Côte d'Azur",
     description:
       "Pose et rénovation de teck naturel pour yachts et bateaux. Artisan à Toulon, intervention sur toute la Côte d'Azur.",
@@ -20,7 +20,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://prestigenautic.com/" },
-    { "@type": "ListItem", position: 2, name: "Teck naturel", item: "https://prestigenautic.com/pages/teck-naturel.html" },
+    { "@type": "ListItem", position: 2, name: "Teck naturel", item: "https://prestigenautic.com/pages/teck-naturel" },
   ],
 };
 

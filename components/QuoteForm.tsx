@@ -98,7 +98,7 @@ export default function QuoteForm() {
     }
 
     setSubmitting(true);
-    setErrorMsg("Envoi en cours...");
+    setErrorMsg("");
     setSuccessMsg("");
 
     try {
@@ -122,6 +122,13 @@ export default function QuoteForm() {
         result?.message ||
           "Demande préparée avec succès. Nous reviendrons vers vous après étude de votre projet."
       );
+      // Amener le message de succès dans le champ de vision
+      requestAnimationFrame(() => {
+        document.getElementById("quote-success")?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      });
     } catch {
       setErrorMsg(
         "Erreur réseau. Réessayez dans un instant ou contactez-nous directement."
@@ -134,6 +141,7 @@ export default function QuoteForm() {
 
   return (
     <form className="form" id="quote-form" ref={formRef} onSubmit={handleSubmit} noValidate>
+      <fieldset disabled={submitting}>
       <div className="form-grid">
         <div className="field">
           <label htmlFor="quote-prenom">Prénom</label>
@@ -248,15 +256,28 @@ export default function QuoteForm() {
           ></textarea>
         </div>
       </div>
+      </fieldset>
 
       <div className="hero__actions">
-        <button className="btn btn--primary" type="submit" disabled={submitting}>
-          Envoyer la demande
+        <button
+          className="btn btn--primary quote-submit"
+          type="submit"
+          disabled={submitting}
+          aria-busy={submitting}
+        >
+          {submitting && <span className="quote-spinner" aria-hidden="true" />}
+          {submitting ? "Envoi en cours…" : "Envoyer la demande"}
         </button>
       </div>
 
-      {errorMsg && <p id="quote-message">{errorMsg}</p>}
-      {successMsg && <p id="quote-success">{successMsg}</p>}
+      {/* Régions live : toujours présentes pour que le lecteur d'écran annonce
+          les changements (erreur = assertif, succès = poli). */}
+      <p id="quote-message" role="alert" aria-live="assertive">
+        {errorMsg}
+      </p>
+      <p id="quote-success" aria-live="polite">
+        {successMsg}
+      </p>
     </form>
   );
 }

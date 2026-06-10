@@ -1,0 +1,678 @@
+/* ============================================================
+   UI / UX — polish (formulaire, articles, mobile, interactions)
+   ============================================================ */
+
+/* ============================================================
+   PRESTATIONS — grille mosaïque asymétrique + survol qualitatif
+   ============================================================ */
+.services-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 224px;
+  gap: 1.1rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+/* Carte mise en avant : occupe 2 colonnes et 2 rangées (grand format). */
+.svc-card--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.svc-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 20px);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  isolation: isolate;
+  box-shadow: 0 10px 30px rgba(3, 16, 30, 0.18);
+  /* Pas de bordure : les images plein cadre se suffisent (contour net). */
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* Image de fond dans un calque dédié → on peut la zoomer sans déformer la carte. */
+.svc-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.svc-card__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(3, 16, 30, 0.9) 0%, rgba(3, 16, 30, 0.35) 55%, rgba(3, 16, 30, 0.1) 100%);
+  transition: background 0.4s ease;
+}
+
+/* Affectation des images au calque média (depuis les classes existantes). */
+.service-card--teck-synthetique .svc-card__media { background-image: url('/assets/teck-synthetique.webp'); }
+.service-card--teck-naturel     .svc-card__media { background-image: url('/assets/teck-naturel.webp'); }
+.service-card--vaigrage         .svc-card__media { background-image: url('/assets/vaigrage.webp'); }
+.service-card--refit-integral   .svc-card__media { background-image: url('/assets/refit-integral-luxe.webp'); }
+.service-card--soudure-inox     .svc-card__media { background-image: url('/assets/soudure-inox.webp'); }
+
+.svc-card__body {
+  position: relative;
+  display: grid;
+  gap: 0.4rem;
+  width: 100%;
+}
+.svc-card__eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-light, #d4b876);
+  margin-bottom: 0.3rem;
+}
+.svc-card__title {
+  font-family: var(--font-display-stack), serif;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-size: 1.5rem;
+}
+.svc-card--featured .svc-card__title {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+.svc-card__text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 34ch;
+  /* Masqué par défaut, révélé au survol (sauf carte featured = toujours visible). */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease, opacity 0.4s ease, margin 0.4s ease;
+}
+.svc-card--featured .svc-card__text {
+  max-height: 5rem;
+  opacity: 1;
+  margin-top: 0.2rem;
+}
+.svc-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.svc-card__cta svg {
+  transition: transform 0.35s ease;
+}
+
+/* — Survol (souris fine seulement) : zoom image doux, voile clair, révélation. */
+@media (hover: hover) and (pointer: fine) {
+  .svc-card:hover {
+    box-shadow: 0 22px 50px rgba(3, 16, 30, 0.4);
+    transform: translateY(-4px);
+  }
+  .svc-card:hover .svc-card__media {
+    transform: scale(1.06);
+  }
+  .svc-card:hover .svc-card__veil {
+    background: linear-gradient(to top, rgba(3, 16, 30, 0.92) 0%, rgba(3, 16, 30, 0.4) 60%, rgba(10, 37, 64, 0.15) 100%);
+  }
+  .svc-card:hover .svc-card__text {
+    max-height: 6rem;
+    opacity: 1;
+    margin-top: 0.2rem;
+  }
+  .svc-card:hover .svc-card__cta svg {
+    transform: translateX(5px);
+  }
+}
+
+/* — Focus clavier : on révèle aussi le texte (accessibilité). */
+.svc-card:focus-visible .svc-card__text {
+  max-height: 6rem;
+  opacity: 1;
+  margin-top: 0.2rem;
+}
+
+/* — Responsive — */
+@media (max-width: 900px) {
+  .services-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+  .svc-card--featured {
+    grid-column: span 2;
+    grid-row: span 1;
+    min-height: 280px;
+  }
+  /* Sur petit écran, le texte des cartes reste visible (pas de survol tactile). */
+  .svc-card__text {
+    max-height: 5rem;
+    opacity: 1;
+    margin-top: 0.2rem;
+  }
+}
+@media (max-width: 560px) {
+  .services-mosaic {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+  .svc-card--featured {
+    grid-column: span 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-card__media,
+  .svc-card:hover .svc-card__media {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   HERO — composition rééquilibrée, overlay adouci, boutons soignés
+   ============================================================ */
+/* Contenu centré verticalement plutôt que collé en bas : plus équilibré. */
+.hero {
+  align-items: center;
+}
+/* On adoucit légèrement le voile pour valoriser l'image, tout en gardant
+   un dégradé à gauche assez dense pour la lisibilité du texte blanc. */
+.hero__overlay {
+  background:
+    linear-gradient(100deg, rgba(3, 16, 30, 0.82) 0%, rgba(6, 26, 46, 0.5) 42%, rgba(10, 37, 64, 0.12) 100%),
+    linear-gradient(to top, rgba(3, 16, 30, 0.7) 0%, rgba(6, 26, 46, 0.06) 55%);
+}
+
+/* Fin liseré doré au-dessus du titre : structure le hero sans ajouter de texte. */
+.hero h1 {
+  position: relative;
+  padding-top: 1.6rem;
+}
+.hero h1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-light, #d4b876), var(--gold, #b8924e));
+}
+
+/* Rythme vertical du hero un peu plus généreux et régulier. */
+.hero p {
+  margin-top: 1.75rem;
+  max-width: 52ch;
+}
+.hero__actions {
+  margin-top: 2.6rem;
+  gap: 1.1rem;
+}
+/* Boutons hero : un peu plus de présence (taille tactile + prestance). */
+.hero .btn {
+  min-height: 56px;
+  padding: 1rem 2rem;
+}
+
+/* ============================================================
+   NAVBAR — flou premium, espacement affiné, compactage au scroll
+   ============================================================ */
+.site-header {
+  /* Flou premium bien actif sur le fond navy translucide. */
+  background: rgba(3, 16, 30, 0.72);
+  -webkit-backdrop-filter: saturate(150%) blur(16px);
+  backdrop-filter: saturate(150%) blur(16px);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hauteur de barre confortable au repos, compacte au scroll. */
+.site-header__inner {
+  min-height: 88px;
+  transition: min-height 0.3s ease;
+}
+.site-header.is-scrolled .site-header__inner {
+  min-height: 64px;
+}
+
+/* Logo : se réduit légèrement au scroll. */
+.brand__logo {
+  transition: width 0.3s ease;
+}
+.site-header.is-scrolled .brand__logo {
+  width: 132px;
+}
+
+/* État scrollé : fond plus dense + fine ombre + liseré doré subtil. */
+.site-header.is-scrolled {
+  background: rgba(3, 16, 30, 0.92);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.32);
+  border-bottom-color: rgba(184, 146, 78, 0.22);
+}
+
+/* Liens nav : espacement plus régulier, typo affinée. */
+.site-header .nav {
+  gap: 0.15rem;
+}
+.site-header .nav a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.6rem 1rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+/* Soulignement doré au survol, plus net et centré. */
+.site-header .nav a::after {
+  height: 1.5px;
+  background: var(--gold-light, #d4b876);
+}
+.site-header .nav a[aria-current="page"] {
+  color: #fff;
+}
+.site-header .nav a[aria-current="page"]::after {
+  width: calc(100% - 2rem);
+  left: 1rem;
+}
+
+/* ============================================================
+   AMBIANCE LUXE — respiration & détails dorés
+   ============================================================ */
+
+/* — Respiration : sections plus aérées (le vide signe le haut de gamme). */
+.section {
+  padding-top: clamp(4.5rem, 8vw, 9rem);
+  padding-bottom: clamp(4.5rem, 8vw, 9rem);
+}
+/* Plus d'air sous l'en-tête de section. */
+.section-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+/* Le titre respire au-dessus du paragraphe d'intro. */
+.section-head h2,
+.section-text h2 {
+  margin-bottom: 0.4rem;
+}
+
+/* — Eyebrows : affinés (graisse 500, moins espacés) — la retenue fait le luxe.
+   On dose l'or : le libellé passe en teinte plus sobre, le filet reste fin. */
+.section-eyebrow,
+.config-cta__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  gap: 0.75rem;
+  color: var(--gold-deep, #8c6b34);
+}
+.section-eyebrow::before {
+  width: 32px;
+  height: 1px;
+  background: var(--gold, #b8924e);
+}
+
+/* — Filet doré sous les titres de section : discret, fin (détail, pas décor). */
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin-top: 1.2rem;
+  background: var(--gold, #b8924e);
+}
+.section-head--center h2::after {
+  margin-inline: auto;
+}
+
+/* — Séparateur décoratif réutilisable (losange doré entre filets). */
+.lux-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: clamp(2rem, 4vw, 3.5rem) auto;
+  color: var(--gold, #b8924e);
+}
+.lux-divider::before,
+.lux-divider::after {
+  content: "";
+  height: 1px;
+  width: clamp(40px, 12vw, 110px);
+  background: linear-gradient(90deg, transparent, var(--gold, #b8924e));
+}
+.lux-divider::after {
+  background: linear-gradient(90deg, var(--gold, #b8924e), transparent);
+}
+.lux-divider span {
+  font-size: 0.7rem;
+  transform: rotate(45deg);
+}
+
+/* — Boutons : un peu plus de présence et d'interlettrage premium. */
+.btn {
+  letter-spacing: 0.14em;
+}
+
+/* ---------- Interlettrage des petites étiquettes en majuscules ----------
+   (libellés, tags, kickers) — modéré, pour rester lisible et discret. */
+.kicker,
+.value-item__label,
+.field label,
+.article-card__tag,
+.legal-eyebrow,
+.configurator-kicker,
+.config-panel-label,
+.selection-chiplabel {
+  letter-spacing: 0.14em;
+}
+/* Le corps reste confortable et lisible (public 40+). */
+body {
+  line-height: 1.7;
+}
+
+/* ---------- Bouton retour en haut ---------- */
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 1.75rem);
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light, #d4b876), var(--gold, #b8924e));
+  color: var(--navy-900, #061a2e);
+  box-shadow: 0 8px 24px rgba(184, 146, 78, 0.4);
+  cursor: pointer;
+}
+.back-to-top:hover {
+  box-shadow: 0 12px 30px rgba(184, 146, 78, 0.55);
+}
+
+/* ============================================================
+   Survols repensés — on retire les "scale" natifs (effet jugé peu
+   qualitatif) au profit d'élévation d'ombre, glissement et liseré doré.
+   ============================================================ */
+
+/* Cartes prestations : plus de zoom, juste une élévation + liseré doré */
+.service-card:hover {
+  transform: translateY(-6px); /* annule le scale(1.01) d'origine */
+}
+.service-card {
+  border: 1px solid transparent;
+  transition: transform var(--transition-slow), box-shadow var(--transition),
+    border-color var(--transition);
+}
+.service-card:hover {
+  border-color: rgba(184, 146, 78, 0.55);
+}
+
+/* Galerie réalisations : plus de zoom image, voile lumineux discret */
+.realisation-card img {
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+.realisation-card:hover img {
+  transform: none; /* annule scale(1.05) */
+  filter: brightness(1.06) saturate(1.05);
+}
+.realisation-card__media {
+  transition: box-shadow var(--transition);
+}
+.realisation-card:hover .realisation-card__media {
+  box-shadow: 0 12px 30px rgba(3, 16, 30, 0.22);
+}
+
+/* Cadre zoom matière (configurateur) : plus de zoom, légère clarté */
+@media (hover: hover) and (pointer: fine) {
+  .zoom-image-frame:hover img {
+    transform: none; /* annule scale(1.04) */
+    filter: brightness(1.05);
+  }
+}
+
+/* ---------- Perf : éviter le CLS du configurateur ---------- */
+/* Le cadre de la vue principale n'avait pas de ratio fixe : l'image
+   (portrait ~3/4) provoquait un décalage au chargement. On réserve l'espace. */
+.config-main-visualframe {
+  aspect-ratio: 3 / 4;
+}
+.config-main-visualframe img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Formulaire de devis : états & feedback ---------- */
+.quote-submit {
+  position: relative;
+}
+.quote-submit[disabled] {
+  opacity: 0.85;
+  cursor: progress;
+}
+
+.quote-spinner {
+  width: 1.05em;
+  height: 1.05em;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  animation: quoteSpin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes quoteSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Champs désactivés pendant l'envoi (via fieldset[disabled]) */
+.form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0; /* évite le débordement du fieldset en flex/grid */
+}
+.form fieldset[disabled] .field {
+  opacity: 0.6;
+  transition: opacity var(--transition, 0.28s ease);
+}
+
+/* Message de succès : encadré plus visible et rassurant */
+#quote-success:not(:empty) {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(120, 170, 90, 0.12);
+  border: 1px solid rgba(120, 170, 90, 0.4);
+  border-left: 3px solid #6f9d4e;
+  border-radius: var(--radius-md, 14px);
+  color: #e7f1da;
+  font-weight: 500;
+  line-height: 1.5;
+  animation: quoteSuccessIn 0.35s ease;
+}
+#quote-success:not(:empty)::before {
+  content: "✓";
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  background: #6f9d4e;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+@keyframes quoteSuccessIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Message d'erreur : un peu plus lisible */
+#quote-message:not(:empty) {
+  margin-top: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba(192, 57, 43, 0.1);
+  border-left: 3px solid #c0392b;
+  border-radius: var(--radius-sm, 10px);
+  color: #f1c9c4;
+  font-weight: 500;
+}
+
+/* Champ invalide (validation au blur) */
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"],
+.custom-select[data-invalid="true"] .custom-select__trigger {
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-spinner { animation-duration: 1.2s; }
+  #quote-success:not(:empty) { animation: none; }
+}
+
+/* ---------- Page 404 ---------- */
+.notfound-page {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--navy-950, #03101e), var(--navy-900, #061a2e));
+  padding: clamp(3rem, 8vw, 6rem) 1.5rem;
+  color: #fff;
+}
+.notfound-inner {
+  max-width: 560px;
+  text-align: center;
+}
+.notfound-code {
+  font-family: var(--font-cormorant-stack), serif;
+  font-size: clamp(4rem, 14vw, 7rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold, #b8924e);
+  margin-bottom: 0.5rem;
+}
+.notfound-title {
+  font-family: var(--font-cormorant-stack), serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.notfound-title em {
+  font-style: italic;
+  color: var(--gold-light, #d4b876);
+}
+.notfound-text {
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.notfound-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+.notfound-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill, 999px);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.notfound-link:hover,
+.notfound-link:focus-visible {
+  background: var(--gold, #b8924e);
+  border-color: var(--gold, #b8924e);
+  color: var(--navy-900, #061a2e);
+  outline: none;
+}
+.notfound-contact {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.notfound-contact a {
+  color: var(--gold-light, #d4b876);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Lisibilité des articles ---------- */
+/* Confort de lecture : police légèrement plus grande sur les longs guides */
+.article-prose p,
+.article-prose ul li {
+  font-size: 1.05rem;
+}
+
+/* Sommaire (table des matières) */
+.article-toc {
+  margin: 2rem 0 2.75rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, rgba(10, 37, 64, 0.1));
+  border-left: 3px solid var(--gold, #b8924e);
+  border-radius: var(--radius-md, 14px);
+  box-shadow: var(--shadow-xs, 0 2px 6px rgba(6, 26, 46, 0.06));
+}
+.article-toc__title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep, #8c6b34);
+  margin-bottom: 0.85rem;
+}
+.article-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  gap: 0.5rem;
+}
+.article-toc__list li {
+  counter-increment: toc;
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+.article-toc__list li::before {
+  content: counter(toc, decimal-leading-zero);
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold, #b8924e);
+  font-variant-numeric: tabular-nums;
+}
+.article-toc__list a {
+  color: var(--navy-700, #0d2c4a);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.article-toc__list a:hover,
+.article-toc__list a:focus-visible {
+  color: var(--gold-deep, #8c6b34);
+  border-bottom-color: var(--gold, #b8924e);
+}
+.article-toc__list a.is-active {
+  color: var(--gold-deep, #8c6b34);
+  font-weight: 600;
+}

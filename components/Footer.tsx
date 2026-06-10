@@ -16,7 +16,7 @@ export default function Footer() {
           <a href="tel:+33783345950">07 83 34 59 50</a>
           &nbsp;·&nbsp; Toulon (83)
         </p>
-        <p style={{ marginTop: "0.85rem", fontSize: "0.78rem", color: "rgba(255,255,255,0.35)" }}>
+        <p style={{ marginTop: "0.85rem", fontSize: "0.78rem", color: "rgba(255,255,255,0.6)" }}>
           <Link href="/pages/mentions-legales">Mentions légales</Link>
           &nbsp;·&nbsp;
           <Link href="/pages/politique-confidentialite">Politique de confidentialité</Link>

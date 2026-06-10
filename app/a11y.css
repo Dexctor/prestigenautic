@@ -1,0 +1,112 @@
+/* ============================================================
+   ACCESSIBILITÉ — Focus clavier visible & lien d'évitement
+   ============================================================ */
+
+/* --- Anneau de focus global (clavier uniquement) ---
+   On cible :focus-visible pour ne PAS afficher l'anneau au clic souris,
+   mais le rendre net pour la navigation clavier. L'anneau doré reste
+   lisible sur fond clair comme sur fond navy. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--gold, #b8924e);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Certains composants du site posent explicitement outline:none.
+   On rétablit un focus visible fort en surcharge ciblée. */
+.nav a:focus-visible,
+.btn:focus-visible,
+.custom-select__trigger:focus-visible,
+.custom-select__option:focus-visible,
+.swatch-card:focus-visible,
+.zoom-trigger:focus-visible,
+.config-back-link:focus-visible,
+.service-card:focus-visible,
+.related-link:focus-visible,
+.article-card:focus-visible,
+.footer-cookie-link:focus-visible,
+.cookie-link-btn:focus-visible,
+.image-modal__close:focus-visible {
+  outline: 3px solid var(--gold-light, #d4b876);
+  outline-offset: 3px;
+}
+
+/* Sur les surfaces sombres (cartes service en navy), l'anneau doré clair
+   ressort mieux. Sur surfaces claires, l'or standard suffit. */
+.service-card:focus-visible,
+.zoom-trigger:focus-visible {
+  outline-offset: -3px; /* anneau à l'intérieur de la carte image */
+}
+
+/* --- Hiérarchie des titres ---
+   Les "process-step" passent de <h4> à <h3> (suppression d'un saut de niveau).
+   On reporte le style d'origine (.process-step__body h4) sur le h3, et on
+   neutralise la famille Cormorant héritée (ces titres sont en Inter). */
+.process-step__body h3 {
+  font-family: var(--font-inter-stack), "Inter", system-ui, sans-serif;
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--navy-800, #0a2540);
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+  letter-spacing: normal;
+}
+
+/* --- Lien d'évitement (skip link) --- */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 1100;
+  padding: 0.7rem 1.4rem;
+  background: var(--navy-800, #0a2540);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--gold, #b8924e);
+  border-radius: 0 0 var(--radius-md, 14px) var(--radius-md, 14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translate(-50%, 0);
+  outline: none;
+}
+
+/* Le <main> reçoit le focus via le skip link sans afficher d'anneau permanent */
+main:focus {
+  outline: none;
+}
+
+/* Régions live du formulaire : ne pas occuper d'espace quand elles sont vides */
+#quote-message:empty {
+  display: none;
+}
+
+/* ============================================================
+   Contrastes (WCAG AA) — corrections ciblées
+   ============================================================ */
+/* Texte « savoir-faire » : --muted (#5a6f87) trop sombre sur le fond navy.
+   On l'éclaircit pour atteindre ≥ 4.5:1. */
+.section--split .section-text p,
+#savoir-faire .section-text p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Chiffres dorés de la bande de valeurs (sur carte blanche) : l'or clair
+   n'atteignait pas 3:1. On utilise l'or profond, plus contrasté. */
+.values-strip .value-item__num {
+  color: var(--gold-deep, #8c6b34);
+}
+
+/* Liens légaux du footer : on garde l'or clair (contraste suffisant). */
+.site-footer p a {
+  color: var(--gold-light, #d4b876);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+}
