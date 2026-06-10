@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S71ZDHV3FR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S71ZDHV3FR');
+  </script>
+  <title>Configurateur teck synthétique bateau | Prestige Nautic</title>
+  <meta name="description" content="Configurateur de teck synthétique Prestige Nautic : visualisez en temps réel les teintes et couleurs de joint sur un bateau. Artisan à Toulon." />
+  <link rel="canonical" href="https://prestigenautic.com/pages/configurateur.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://prestigenautic.com/pages/configurateur.html" />
+  <meta property="og:title" content="Configurateur teck synthétique bateau | Prestige Nautic" />
+  <meta property="og:description" content="Visualisez votre pont en teck synthétique : teintes et joints au choix, rendu en temps réel. Artisan nautique à Toulon — Côte d'Azur." />
+  <meta property="og:image" content="https://prestigenautic.com/assets/teck-synthetique.webp" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Prestige Nautic" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Configurateur teck synthétique bateau | Prestige Nautic" />
+  <meta name="twitter:description" content="Visualisez votre pont en teck synthétique : teintes et joints au choix, rendu en temps réel. Artisan nautique à Toulon — Côte d'Azur." />
+  <meta name="twitter:image" content="https://prestigenautic.com/assets/teck-synthetique.webp" />
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://prestigenautic.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Configurateur teck synthétique", "item": "https://prestigenautic.com/pages/configurateur.html" }
+    ]
+  }
+  </script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    /* MASQUE NOM MARQUE TECK — retirer ce bloc quand accord validé */
+    #teck-options .swatch-cardtitle { display: none; }
+  </style>
+</head>
+<body>
+  <main class="configurateur-page configurateur-page--audi">
+    <section class="configurateur-shell">
+      <div class="configurateur-topbar">
+        <a aria-label='Retour à l’accueil Prestige Nautic' class='config-back-link' href='/'>
+          <span>Retour</span>
+          <span class="config-back-link__icon" aria-hidden="true">→</span>
+        </a>
+
+        <p class="configurator-kicker">Prestige Nautic</p>
+
+        <div class="configurator-heading">
+          <span class="configurator-step">Configurateur teck synthétique</span>
+          <h1>Couleur du teck &amp; du joint</h1>
+          <p>
+            Choisissez votre combinaison et visualisez immédiatement
+            le rendu global ainsi que le détail matière.
+          </p>
+        </div>
+      </div>
+
+      <div class="configurateur-layout configurateur-layout--triple">
+        <section class="config-main-visual" aria-labelledby="config-main-title">
+          <h2 id="config-main-title" class="sr-only">Vue principale</h2>
+
+          <div class="config-main-visualframe">
+            <img
+              id="configurator-image"
+              src="../assets/configurateur/bateau/bateau-reference-vue-01.webp"
+              alt="Vue principale du bateau avec teck synthétique"
+            />
+            <div class="img-placeholder" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="34" height="34" rx="4" stroke="currentColor" stroke-width="2"/>
+                <line x1="8" y1="8" x2="28" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="28" y1="8" x2="8" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Non disponible</span>
+            </div>
+          </div>
+
+          <div class="config-main-visualfooter">
+            <div class="selection-chip">
+              <span class="selection-chiplabel">Teck</span>
+              <strong id="selected-teck">—</strong>
+            </div>
+
+            <div class="selection-chip">
+              <span class="selection-chiplabel">Joint</span>
+              <strong id="selected-joint">Black</strong>
+            </div>
+          </div>
+        </section>
+
+        <aside class="config-zoom-panel" aria-labelledby="config-zoom-title">
+          <div class="config-zoom-panelhead">
+            <span class="config-panel-label">Aperçu matière</span>
+            <h2 id="config-zoom-title">Détail de la combinaison</h2>
+          </div>
+
+          <div class="zoom-image-frame">
+            <img
+              id="zoom-image"
+              src="../assets/configurateur/bateau/variante/teak-black.webp"
+              alt="Aperçu matière"
+              loading="lazy"
+            />
+            <div class="img-placeholder" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="34" height="34" rx="4" stroke="currentColor" stroke-width="2"/>
+                <line x1="8" y1="8" x2="28" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="28" y1="8" x2="8" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Non disponible</span>
+            </div>
+            <button
+              type="button"
+              class="zoom-trigger"
+              aria-label="Agrandir l’aperçu matière"
+            ></button>
+          </div>
+
+          <div class="material-caption">
+            <p>
+              Association active :
+              <strong id="selected-combo">— / Black</strong>
+            </p>
+          </div>
+        </aside>
+
+        <aside class="config-choice-panel" aria-labelledby="config-choice-title">
+          <div class="config-choice-panelhead">
+            <span class="config-panel-label">Sélection</span>
+            <h2 id="config-choice-title">Personnalisation</h2>
+          </div>
+
+          <div class="config-choice-columns">
+            <section class="choice-column" aria-labelledby="teck-title">
+              <h3 id="teck-title">Couleur du teck</h3>
+
+              <div class="swatch-list" id="teck-options">
+                <button
+                  type="button"
+                  class="swatch-card is-active"
+                  data-type="teck"
+                  data-value="champagne"
+                  aria-pressed="true"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--champagne"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Champagne</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="swatch-card"
+                  data-type="teck"
+                  data-value="dapplegrey"
+                  aria-pressed="false"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--dapplegrey"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Dapplegrey</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="swatch-card"
+                  data-type="teck"
+                  data-value="mediteraneen"
+                  aria-pressed="false"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--mediteraneen"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Mediteraneen</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="swatch-card"
+                  data-type="teck"
+                  data-value="noyer"
+                  aria-pressed="false"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--noyer"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Noyer</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="swatch-card"
+                  data-type="teck"
+                  data-value="teak"
+                  aria-pressed="false"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--teak"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Teak</span>
+                  </span>
+                </button>
+              </div>
+            </section>
+
+            <section class="choice-column" aria-labelledby="joint-title">
+              <h3 id="joint-title">Couleur du joint</h3>
+
+              <div class="swatch-list" id="joint-options">
+                <button
+                  type="button"
+                  class="swatch-card is-active"
+                  data-type="joint"
+                  data-value="black"
+                  aria-pressed="true"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--black"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Black</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="swatch-card"
+                  data-type="joint"
+                  data-value="silver"
+                  aria-pressed="false"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--silver"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">Silver</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="swatch-card"
+                  data-type="joint"
+                  data-value="white"
+                  aria-pressed="false"
+                >
+                  <span class="swatch-card__dot swatch-card__dot--white"></span>
+                  <span class="swatch-cardcontent">
+                    <span class="swatch-cardtitle">White</span>
+                  </span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="material-modal" class="image-modal" aria-hidden="true">
+    <button type="button" class="image-modal__close" aria-label="Fermer l’aperçu">×</button>
+    <img id="material-modal-image" class="image-modal__image" alt="" />
+  </div>
+
+  <script src="../assets/app.js" defer></script>
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="406b76fb-1be9-4ca8-95d6-44a6d74ba38e" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDA2Yjc2ZmItMWJlOS00Y2E4LTk1ZDYtNDRhNmQ3NGJhMzhlIiwiYWNjb3VudF9pZCI6IjY5YjFjOGI0OTgxNGQxMjk1MTNjNDZkMSIsImRlcGxveV9pZCI6IjZhMjczNjViMmE0YzI1MTViN2E1YmU5YSIsImlzc3VlciI6Im5mc2VydmVyIn0.bf3xVurSFr6f72FKbi7a9c2gXLGGW8DE0xL08KaeYbQ"></script></body>
+</html>

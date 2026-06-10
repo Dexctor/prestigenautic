@@ -1,26 +1,70 @@
 @import "tailwindcss";
+@import "./site.css";
+@import "./pages-content.css";
+@import "./cookies.css";
 
+/* ============================================================
+   Liaison des polices next/font avec le CSS du site
+   Les variables --font-cormorant et --font-inter sont injectées
+   par next/font (voir app/layout.tsx). On les branche sur les
+   familles nommées utilisées dans site.css.
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-cormorant-stack: var(--font-cormorant), 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-inter-stack: var(--font-inter), 'Inter', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter-stack);
+}
+
+/* ============================================================
+   Correctif hero : la grille de superposition (.hero / .prestation-hero)
+   calcule sa colonne implicite sur le contenu. Or une <video> ou une <img>
+   non encore chargée n'a pas de largeur intrinsèque fiable, ce qui rétrécit
+   la colonne et casse l'enroulement du titre. On force une colonne pleine
+   largeur (identique au rendu de l'original une fois le média chargé).
+   ============================================================ */
+.hero,
+.prestation-hero {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Le .hero__content porte aussi la classe utilitaire .container : on neutralise
+   toute contrainte de largeur héritée pour qu'il occupe 100% du hero (comme
+   l'original), le centrage du contenu étant assuré par son padding latéral. */
+.hero__content.container {
+  width: 100%;
+  max-width: none;
+}
+
+/* On force les titres (qui utilisent 'Cormorant Garamond' dans le CSS)
+   à passer par la variable next/font, sans réécrire tout le CSS.
+   Plus robuste : on cible toute famille Cormorant déclarée. */
+.hero h1,
+.section-head h2,
+.section-text h2,
+.service-card__title,
+.value-item__num,
+.configurator-heading h1,
+.config-zoom-panel h2,
+.config-choice-panel h2,
+.choice-column h3,
+.prestation-hero h1,
+.avantage-card__title,
+.devis-cta h2,
+.config-cta__text h3,
+.refit-group__title,
+.guide-hero h1,
+.articles-hero h1,
+.article-card__title,
+.article-prose h2,
+.article-prose h3,
+.matiere-card__title,
+.compare-card__title,
+.profil-card h3,
+.step-card__title,
+.legal-page h1,
+.faq-section h2 {
+  font-family: var(--font-cormorant-stack);
 }

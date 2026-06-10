@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Script JS d'origine, conservé comme asset statique de référence (non maintenu).
+    "public/assets/**",
+    // Archive du site original (HTML/CSS/JS bruts capturés).
+    "_archive-site-original/**",
   ]),
 ]);
 
