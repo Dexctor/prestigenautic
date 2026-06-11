@@ -223,23 +223,40 @@
   }
 }
 
-/* ----- NAVBAR / menu burger plein écran soigné ----- */
+/* ----- NAVBAR / menu burger plein écran soigné -----
+   On force position/top/height en !important pour battre les règles de
+   site.css (.nav y est position:absolute; top:calc(100%+…)), sinon le panneau
+   ne s'étire pas et s'effondre sur la hauteur de son contenu (~50px). */
 @media (max-width: 899px) {
   .nav.nav--open {
-    position: fixed;
-    inset: var(--header-height, 88px) 0 0 0;
-    display: flex;
+    position: fixed !important;
+    top: 74px !important;          /* hauteur du header mobile (min-height 74px) */
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    height: calc(100dvh - 74px) !important;
+    max-height: calc(100dvh - 74px);
+    display: flex !important;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: stretch;
     gap: 0.25rem;
-    padding: 1.5rem;
+    margin: 0;
+    padding: 1.25rem;
     background: rgba(3, 16, 30, 0.98);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
+  /* Navbar compactée : le header passe à 64px → on aligne le panneau. */
   .site-header.is-scrolled .nav.nav--open {
-    inset: 64px 0 0 0;
+    top: 64px !important;
+    height: calc(100dvh - 64px) !important;
+    max-height: calc(100dvh - 64px);
   }
   .nav.nav--open a {
     width: 100%;
