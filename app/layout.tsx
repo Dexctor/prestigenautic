@@ -4,6 +4,7 @@ import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
 import BackToTop from "@/components/BackToTop";
+import { runtimeBaseUrl } from "@/lib/site";
 
 // Manrope : sans-serif moderne et caractériel, pour les titres.
 // Registre premium contemporain (pas « template élégant »).
@@ -28,7 +29,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://prestigenautic.com"),
+  // Base dynamique : résout les images OG vers l'URL réelle du déploiement
+  // (vercel.app en preview, vrai domaine en prod), pour que l'aperçu de
+  // partage s'affiche partout. Les canonicals restent sur le domaine final.
+  metadataBase: new URL(runtimeBaseUrl()),
   title: {
     default: "Artisan teck nautique à Toulon | Prestige Nautic",
     template: "%s | Prestige Nautic",
