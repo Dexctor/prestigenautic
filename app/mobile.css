@@ -57,7 +57,7 @@
     line-height: 1.65;
   }
 
-  /* ----- HERO mobile : hauteur maîtrisée, contenu centré, boutons pleins ----- */
+  /* ----- HERO mobile : hauteur maîtrisée, contenu centré ----- */
   .hero {
     min-height: 86vh;
   }
@@ -66,12 +66,41 @@
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    gap: 0.8rem;
+    gap: 0.6rem;
   }
+  /* CTA principal : plein mais affiné (moins massif que les 54px par défaut). */
   .hero__actions .btn,
   .prestation-hero__actions .btn {
     width: 100%;
     justify-content: center;
+    min-height: 50px;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.86rem;
+  }
+  /* Bouton secondaire → lien discret (pas de gros pavé bordé). */
+  .hero__actions .btn--secondary,
+  .prestation-hero__actions .btn--secondary {
+    min-height: 0;
+    padding: 0.5rem 0.5rem;
+    background: transparent !important;
+    border-color: transparent !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.82rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(184, 146, 78, 0.6);
+  }
+  .hero__actions .btn--secondary:hover,
+  .hero__actions .btn--secondary:active,
+  .prestation-hero__actions .btn--secondary:hover,
+  .prestation-hero__actions .btn--secondary:active {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: var(--gold-light, #d4b876);
+    text-decoration-color: var(--gold, #b8924e);
+    transform: none;
   }
 
   /* ----- GRILLE PRESTATIONS : empilée proprement, hauteurs lisibles ----- */
