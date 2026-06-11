@@ -31,6 +31,19 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Soudure inox sur mesure pour bateau",
+  name: "Soudure et métallerie inox sur mesure pour bateau",
+  description:
+    "Soudure inox sur mesure pour bateau : balcons, hardtops, tables, mains courantes, plages de bain et pièces sur mesure. Travail de l'inox marine soigné.",
+  provider: { "@type": "ProfessionalService", name: "Prestige Nautic", "@id": "https://prestigenautic.com/#organization" },
+  areaServed: { "@type": "Place", name: "Côte d'Azur" },
+  url: "https://prestigenautic.com/pages/soudure-inox",
+};
+
+
 const TAGS = [
   "Filières", "Mains courantes", "Bossoirs", "Taquets",
   "Platines", "Arceaux", "Supports d'instruments", "Rambardes",
@@ -48,6 +61,7 @@ export default function SoudureInoxPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <PrestationLayout
         breadcrumb="Soudure sur mesure"
         heroEyebrow="Métallerie marine"

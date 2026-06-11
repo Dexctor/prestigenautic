@@ -31,6 +31,19 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Pose de teck naturel pour bateau",
+  name: "Pose et rénovation de teck naturel sur yacht et bateau",
+  description:
+    "Pose, rénovation et entretien de pont en teck naturel pour yachts et bateaux. Lames taillées sur mesure, calfatage à la main, finitions haut de gamme.",
+  provider: { "@type": "ProfessionalService", name: "Prestige Nautic", "@id": "https://prestigenautic.com/#organization" },
+  areaServed: { "@type": "Place", name: "Côte d'Azur" },
+  url: "https://prestigenautic.com/pages/teck-naturel",
+};
+
+
 const Icon = ({ d }: { d: string }) => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="var(--navy-700)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     {d.split("|").map((p, i) => (
@@ -43,6 +56,7 @@ export default function TeckNaturelPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <PrestationLayout
         breadcrumb="Teck naturel"
         heroEyebrow="Pose de pont"

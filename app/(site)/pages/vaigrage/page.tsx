@@ -31,6 +31,19 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Vaigrage sur mesure pour bateau",
+  name: "Vaigrage et habillage intérieur sur mesure de bateau",
+  description:
+    "Vaigrage intérieur sur mesure : habillage des cloisons, plafonds et cabines en tissu technique, similicuir marin, cuir ou alcantara. Pose artisanale soignée.",
+  provider: { "@type": "ProfessionalService", name: "Prestige Nautic", "@id": "https://prestigenautic.com/#organization" },
+  areaServed: { "@type": "Place", name: "Côte d'Azur" },
+  url: "https://prestigenautic.com/pages/vaigrage",
+};
+
+
 const Icon = ({ d }: { d: string }) => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="var(--navy-700)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     {d.split("|").map((p, i) => (
@@ -43,6 +56,7 @@ export default function VaigragePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <PrestationLayout
         breadcrumb="Vaigrage"
         heroEyebrow="Habillage intérieur"

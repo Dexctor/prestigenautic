@@ -31,6 +31,19 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Refit intégral de bateau",
+  name: "Refit intégral et rénovation complète de yacht",
+  description:
+    "Refit intégral de yacht : vaigrage, boiseries, inox, sellerie, mais aussi Starlink, enceintes marine, LED sous-marines, covering et lettrage. Chantier piloté de bout en bout.",
+  provider: { "@type": "ProfessionalService", name: "Prestige Nautic", "@id": "https://prestigenautic.com/#organization" },
+  areaServed: { "@type": "Place", name: "Côte d'Azur" },
+  url: "https://prestigenautic.com/pages/refit-integral",
+};
+
+
 const dot = (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="7" cy="7" r="3" fill="currentColor" />
@@ -86,6 +99,7 @@ export default function RefitIntegralPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <PrestationLayout
         breadcrumb="Refit intégral"
         heroEyebrow="Refit & rénovation"
