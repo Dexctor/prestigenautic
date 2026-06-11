@@ -78,9 +78,10 @@ const localBusinessJsonLd = {
   telephone: "+33783345950",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "18 avenue du 1er bataillon Choc",
     addressLocality: "Toulon",
     addressRegion: "Var",
-    postalCode: "83000",
+    postalCode: "83200",
     addressCountry: "FR",
   },
   geo: { "@type": "GeoCoordinates", latitude: 43.1242, longitude: 5.928 },
