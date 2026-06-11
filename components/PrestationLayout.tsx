@@ -160,7 +160,7 @@ export default function PrestationLayout(data: PrestationData) {
 
       {/* CTA CONFIGURATEUR */}
       {data.configCta && (
-        <section className="section" style={{ paddingTop: 0 }}>
+        <section className="section section--flow">
           <div className="container">
             <div className="config-cta">
               <div className="config-cta__text">
@@ -181,7 +181,7 @@ export default function PrestationLayout(data: PrestationData) {
 
       {/* GALERIE RÉALISATIONS */}
       {data.realisations && (
-        <section className="section" style={{ paddingTop: 0 }}>
+        <section className="section section--flow">
           <div className="container">
             <Reveal className="section-head">
               <span className="section-eyebrow">{data.realisations.eyebrow}</span>
@@ -232,7 +232,7 @@ export default function PrestationLayout(data: PrestationData) {
       </section>
 
       {/* FAQ */}
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section section--flow">
         <div className="container">
           <Reveal className="section-head">
             <span className="section-eyebrow">{data.faqEyebrow}</span>

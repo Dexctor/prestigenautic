@@ -110,7 +110,7 @@ export default function RefitIntegralPage() {
           { icon: <Icon d="M5 5h10v10H5z|M17 5h10v10H17z|M5 17h10v10H5z|M17 17h10v10H17z" />, title: "Personnalisation totale", text: "Chaque refit est unique. Nous adaptons les matériaux, les couleurs et les aménagements à vos envies et au style de votre bateau." },
         ]}
         extraSection={
-          <section className="section" style={{ paddingTop: 0 }}>
+          <section className="section section--flow">
             <div className="container">
               <div className="section-head">
                 <span className="section-eyebrow">Le périmètre</span>

@@ -72,7 +72,7 @@ export default function SoudureInoxPage() {
           { icon: <Icon d="M9 9l14 14|M23 9 9 23|M7 7l3 3|M22 22l3 3" />, title: "Soudure de précision", text: "Nous soudons avec tout type de procédés, choisi selon le métal et la pièce. Des cordons propres, solides et homogènes : pas de projections, pas d'inclusions, solidité maximale." },
         ]}
         extraSection={
-          <section className="section" style={{ paddingTop: 0 }}>
+          <section className="section section--flow">
             <div className="container">
               <div className="realisations-tags">
                 {TAGS.map((t) => (

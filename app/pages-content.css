@@ -1656,6 +1656,40 @@
    définitions dupliquées par source.
    ============================================================ */
 
+/* — RYTHME VERTICAL : respiration cohérente entre les sections —
+   Problème corrigé : plusieurs sections avaient padding-top:0 (texte collé
+   au bas de la précédente). On rétablit une respiration régulière et
+   généreuse, avec un padding réduit MAIS non nul pour les sections « suite ». */
+.prestation-hero ~ .section,
+main > .section {
+  padding-top: clamp(3.5rem, 6vw, 6rem);
+  padding-bottom: clamp(3.5rem, 6vw, 6rem);
+}
+/* Section qui enchaîne sur la précédente (même fond) : haut réduit mais aéré. */
+.section--flow {
+  padding-top: clamp(2.25rem, 4.5vw, 3.5rem) !important;
+}
+/* Plus d'air entre le titre d'une section et son contenu. */
+.section-head,
+.section-text {
+  margin-bottom: clamp(2rem, 4vw, 3rem) !important;
+}
+/* Le sous-texte du section-head respire un peu plus du titre. */
+.section-head h2,
+.section-text h2 {
+  margin-bottom: 0.9rem;
+}
+/* La grille intro (texte + image) et les grilles de contenu : plus d'espace
+   au-dessus quand elles suivent directement un titre/section. */
+.avantages-grid {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+.refit-panel,
+.realisations__grid,
+.process-steps {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
 /* — HERO prestation enrichi — */
 .prestation-hero {
   min-height: min(62vh, 600px) !important;
