@@ -4,7 +4,7 @@ import ArticleToc from "@/components/ArticleToc";
 import ArticleFaq from "@/components/ArticleFaq";
 
 export const metadata: Metadata = {
-  title: "Vaigrage de bateau : le guide complet | Prestige Nautic",
+  title: "Vaigrage de bateau : le guide complet",
   description:
     "Tout savoir sur le vaigrage de bateau : matériaux (cuir, tissu, alcantara), étapes de pose, sur mesure ou kit. Guide d'un artisan à Toulon.",
   alternates: { canonical: "https://prestigenautic.com/pages/vaigrage-bateau-guide-complet" },
@@ -14,9 +14,16 @@ export const metadata: Metadata = {
     title: "Vaigrage de bateau : guide complet sur l'habillage intérieur nautique",
     description:
       "Tout savoir sur le vaigrage de bateau : matériaux, étapes, sur mesure vs kit. Guide par un artisan nautique de Toulon, Côte d'Azur.",
-    images: ["https://prestigenautic.com/assets/vaigrage.webp"],
     locale: "fr_FR",
     siteName: "Prestige Nautic",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 

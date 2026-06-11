@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrestationLayout from "@/components/PrestationLayout";
 
 export const metadata: Metadata = {
-  title: "Refit intégral bateau Toulon & Côte d'Azur | Prestige Nautic",
+  title: "Refit intégral de bateau à Toulon",
   description:
     "Refit intégral de yacht sur la Côte d'Azur : vaigrage, boiseries, inox, sellerie, Starlink, LED, covering et enceintes marine. Devis gratuit.",
   alternates: { canonical: "https://prestigenautic.com/pages/refit-integral" },
@@ -11,7 +11,14 @@ export const metadata: Metadata = {
     title: "Refit intégral bateau Toulon & Côte d'Azur | Prestige Nautic",
     description:
       "Refit intégral de yacht sur la Côte d'Azur : vaigrage, boiseries, inox, sellerie, Starlink, LED, covering et enceintes marine. Devis gratuit.",
-    images: ["/assets/refit-integral-luxe.webp"],
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 
@@ -162,6 +169,9 @@ export default function RefitIntegralPage() {
           { href: "/pages/soudure-inox", label: "Soudure sur mesure" },
           { href: "/pages/teck-synthetique", label: "Teck synthétique" },
           { href: "/pages/teck-naturel", label: "Teck naturel" },
+        ]}
+        relatedArticles={[
+          { href: "/pages/vaigrage-bateau-guide-complet", label: "Le vaigrage de bateau : le guide complet" },
         ]}
       />
     </>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Mentions légales | Prestige Nautic",
+  title: "Mentions légales",
   description:
     "Mentions légales du site Prestige Nautic — artisan nautique à Toulon (Var) : teck, vaigrage, refit et inox sur la Côte d'Azur.",
   alternates: { canonical: "https://prestigenautic.com/pages/mentions-legales" },

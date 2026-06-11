@@ -3,7 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Articles & guides nautiques | Prestige Nautic",
+  title: "Guides & conseils d'artisan nautique",
   description:
     "Conseils d'artisan nautique : entretien du teck, vaigrage, refit, choix des matériaux… Tous les guides de Prestige Nautic, basé à Toulon sur la Côte d'Azur.",
   alternates: { canonical: "https://prestigenautic.com/articles" },
@@ -13,9 +13,16 @@ export const metadata: Metadata = {
     title: "Articles et guides nautiques | Prestige Nautic",
     description:
       "Conseils d'artisan nautique : entretien du teck, vaigrage, refit, choix des matériaux. Guides Prestige Nautic, Toulon — Côte d'Azur.",
-    images: ["https://prestigenautic.com/assets/photo-yacht-luxe-1.webp"],
     locale: "fr_FR",
     siteName: "Prestige Nautic",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 

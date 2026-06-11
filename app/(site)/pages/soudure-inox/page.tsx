@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrestationLayout from "@/components/PrestationLayout";
 
 export const metadata: Metadata = {
-  title: "Soudure inox sur mesure bateau Toulon | Prestige Nautic",
+  title: "Soudure inox sur mesure pour bateau",
   description:
     "Pièces métalliques sur mesure pour yachts et bateaux : inox, acier, aluminium. Filières, mains courantes, bossoirs. Artisan à Toulon. Devis gratuit.",
   alternates: { canonical: "https://prestigenautic.com/pages/soudure-inox" },
@@ -11,7 +11,14 @@ export const metadata: Metadata = {
     title: "Soudure inox sur mesure bateau Toulon | Prestige Nautic",
     description:
       "Pièces métalliques sur mesure pour yachts et bateaux : inox, acier, aluminium. Artisan à Toulon, intervention sur toute la Côte d'Azur.",
-    images: ["/assets/soudure-inox.webp"],
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 

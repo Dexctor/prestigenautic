@@ -47,9 +47,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Prestige Nautic",
+    url: "https://prestigenautic.com",
+    title: "Prestige Nautic | Artisan teck nautique à Toulon — Côte d'Azur",
+    description:
+      "Artisan nautique haut de gamme à Toulon : teck synthétique, teck naturel, vaigrage, refit intégral et soudure sur mesure. Intervention sur toute la Côte d'Azur.",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: "Prestige Nautic | Artisan teck nautique à Toulon — Côte d'Azur",
+    description:
+      "Teck synthétique, teck naturel, vaigrage, refit et soudure sur mesure pour yachts et bateaux. Toulon — Côte d'Azur.",
+    images: ["/assets/og-image.png"],
   },
 };
 

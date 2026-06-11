@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Conditions Générales de Vente | Prestige Nautic",
+  title: "Conditions Générales de Vente",
   description:
     "Conditions générales de vente de Prestige Nautic, artisan nautique à Toulon : devis, paiement, délais, garanties et exécution des chantiers.",
   alternates: { canonical: "https://prestigenautic.com/pages/cgv" },

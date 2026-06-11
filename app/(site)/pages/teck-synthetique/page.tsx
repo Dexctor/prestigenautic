@@ -11,7 +11,14 @@ export const metadata: Metadata = {
     title: "Pose teck synthétique bateau | Prestige Nautic — Côte d'Azur",
     description:
       "Spécialiste de la pose de teck synthétique sur yachts et bateaux. Intervention sur toute la Côte d'Azur. Devis gratuit.",
-    images: ["/assets/teck-synthetique.webp"],
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 
@@ -147,6 +154,10 @@ export default function TeckSynthetiquePage() {
           { href: "/pages/vaigrage", label: "Vaigrage intérieur" },
           { href: "/pages/refit-integral", label: "Refit intégral" },
           { href: "/pages/soudure-inox", label: "Soudure sur mesure" },
+        ]}
+        relatedArticles={[
+          { href: "/pages/teck-synthetique-ou-naturel", label: "Teck synthétique ou naturel : que choisir ?" },
+          { href: "/pages/entretien-teck-bateau", label: "Comment entretenir son teck de bateau" },
         ]}
       />
     </>

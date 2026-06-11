@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité | Prestige Nautic",
+  title: "Politique de confidentialité",
   description:
     "Politique de confidentialité de Prestige Nautic : données collectées via le formulaire de devis, conservation et exercice de vos droits (RGPD).",
   alternates: {

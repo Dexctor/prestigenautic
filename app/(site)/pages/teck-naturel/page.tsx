@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrestationLayout from "@/components/PrestationLayout";
 
 export const metadata: Metadata = {
-  title: "Pose teck naturel bateau | Prestige Nautic — Côte d'Azur",
+  title: "Pose de teck naturel bateau — Côte d'Azur",
   description:
     "Pose et rénovation de teck naturel pour yachts et bateaux. Artisan à Toulon : finitions authentiques, bois haut de gamme. Côte d'Azur. Devis gratuit.",
   alternates: { canonical: "https://prestigenautic.com/pages/teck-naturel" },
@@ -11,7 +11,14 @@ export const metadata: Metadata = {
     title: "Pose teck naturel bateau | Prestige Nautic — Côte d'Azur",
     description:
       "Pose et rénovation de teck naturel pour yachts et bateaux. Artisan à Toulon, intervention sur toute la Côte d'Azur.",
-    images: ["/assets/teck-naturel.webp"],
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 
@@ -86,6 +93,10 @@ export default function TeckNaturelPage() {
           { href: "/pages/vaigrage", label: "Vaigrage intérieur" },
           { href: "/pages/refit-integral", label: "Refit intégral" },
           { href: "/pages/soudure-inox", label: "Soudure sur mesure" },
+        ]}
+        relatedArticles={[
+          { href: "/pages/entretien-teck-bateau", label: "Comment entretenir son teck de bateau" },
+          { href: "/pages/teck-synthetique-ou-naturel", label: "Teck synthétique ou naturel : que choisir ?" },
         ]}
       />
     </>

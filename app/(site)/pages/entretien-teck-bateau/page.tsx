@@ -4,7 +4,7 @@ import ArticleToc from "@/components/ArticleToc";
 import ArticleFaq from "@/components/ArticleFaq";
 
 export const metadata: Metadata = {
-  title: "Entretien du teck de bateau : le guide | Prestige Nautic",
+  title: "Entretien du teck de bateau : le guide",
   description:
     "Guide complet pour entretenir le teck de votre bateau : nettoyage, dégrisage, huilage et erreurs à éviter. Conseils d'artisan à Toulon.",
   alternates: { canonical: "https://prestigenautic.com/pages/entretien-teck-bateau" },
@@ -14,9 +14,16 @@ export const metadata: Metadata = {
     title: "Comment entretenir son teck de bateau : guide complet",
     description:
       "Guide complet pour entretenir le teck de votre bateau : nettoyage, dégrisage, huilage, erreurs à éviter. Conseils d'artisan nautique depuis Toulon — Côte d'Azur.",
-    images: ["https://prestigenautic.com/assets/teck-naturel.webp"],
     locale: "fr_FR",
     siteName: "Prestige Nautic",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 

@@ -58,6 +58,8 @@ export type PrestationData = {
   ctaButtonLabel: string;
   relatedTitle?: string;
   related: RelatedLink[];
+  /** Articles de blog liés (maillage interne prestation → guide). */
+  relatedArticles?: RelatedLink[];
 };
 
 function btnClass(variant: "gold" | "secondary" | "primary") {
@@ -251,32 +253,36 @@ export default function PrestationLayout(data: PrestationData) {
         </div>
       </section>
 
-      {/* AUTRES PRESTATIONS */}
-      {data.related.length > 0 && (
-        <section
-          className="section"
-          style={{ background: "var(--bg-soft)", paddingTop: "2rem", paddingBottom: "2rem" }}
-        >
+      {/* AUTRES PRESTATIONS & ARTICLES LIÉS (maillage interne) */}
+      {(data.related.length > 0 || (data.relatedArticles?.length ?? 0) > 0) && (
+        <section className="article-related">
           <div className="container">
-            <p
-              style={{
-                fontSize: "0.8rem",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                marginBottom: "1rem",
-              }}
-            >
-              {data.relatedTitle ?? "Autres prestations"}
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-              {data.related.map((r) => (
-                <Link className="related-link" href={r.href} key={r.href}>
-                  <span className="related-link__label">{r.label}</span>
-                  <span className="related-link__arrow">→</span>
-                </Link>
-              ))}
-            </div>
+            {data.related.length > 0 && (
+              <div className="article-related__group">
+                <p className="article-related__label">{data.relatedTitle ?? "Autres prestations"}</p>
+                <div className="article-related__links">
+                  {data.related.map((r) => (
+                    <Link className="related-link" href={r.href} key={r.href}>
+                      <span className="related-link__label">{r.label}</span>
+                      <span className="related-link__arrow">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {data.relatedArticles && data.relatedArticles.length > 0 && (
+              <div className="article-related__group">
+                <p className="article-related__label">Nos guides sur le sujet</p>
+                <div className="article-related__links">
+                  {data.relatedArticles.map((r) => (
+                    <Link className="related-link" href={r.href} key={r.href}>
+                      <span className="related-link__label">{r.label}</span>
+                      <span className="related-link__arrow">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )}

@@ -4,7 +4,7 @@ import ArticleToc from "@/components/ArticleToc";
 import ArticleFaq from "@/components/ArticleFaq";
 
 export const metadata: Metadata = {
-  title: "Teck synthétique ou naturel pour bateau | Prestige Nautic",
+  title: "Teck synthétique ou naturel : que choisir ?",
   description:
     "Teck synthétique ou teck naturel pour le pont de votre bateau ? Comparatif aspect, entretien, durabilité et prix. Le guide Prestige Nautic, Toulon.",
   alternates: { canonical: "https://prestigenautic.com/pages/teck-synthetique-ou-naturel" },
@@ -14,9 +14,16 @@ export const metadata: Metadata = {
     title: "Teck synthétique ou teck naturel : quel pont choisir ?",
     description:
       "Comparatif complet teck synthétique vs teck naturel : aspect, entretien, durabilité, prix et confort. Le guide de Prestige Nautic.",
-    images: ["https://prestigenautic.com/assets/teck-synthetique.webp"],
     locale: "fr_FR",
     siteName: "Prestige Nautic",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 

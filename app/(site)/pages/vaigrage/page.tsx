@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrestationLayout from "@/components/PrestationLayout";
 
 export const metadata: Metadata = {
-  title: "Vaigrage bateau sur mesure | Prestige Nautic — Côte d'Azur",
+  title: "Vaigrage de bateau sur mesure — Côte d'Azur",
   description:
     "Pose de vaigrage intérieur pour yachts et bateaux. Artisan à Toulon : isolation, esthétique premium, matériaux haut de gamme. Devis gratuit.",
   alternates: { canonical: "https://prestigenautic.com/pages/vaigrage" },
@@ -11,7 +11,14 @@ export const metadata: Metadata = {
     title: "Vaigrage bateau sur mesure | Prestige Nautic — Côte d'Azur",
     description:
       "Pose de vaigrage intérieur sur mesure pour yachts et bateaux. Artisan à Toulon, intervention sur toute la Côte d'Azur.",
-    images: ["/assets/vaigrage.webp"],
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prestige Nautic — artisan teck, vaigrage et refit sur mesure à Toulon, Côte d'Azur",
+      },
+    ],
   },
 };
 
@@ -96,6 +103,9 @@ export default function VaigragePage() {
           { href: "/pages/teck-synthetique", label: "Teck synthétique" },
           { href: "/pages/teck-naturel", label: "Teck naturel" },
           { href: "/pages/soudure-inox", label: "Soudure sur mesure" },
+        ]}
+        relatedArticles={[
+          { href: "/pages/vaigrage-bateau-guide-complet", label: "Le vaigrage de bateau : le guide complet" },
         ]}
       />
     </>
