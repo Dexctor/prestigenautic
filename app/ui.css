@@ -549,14 +549,17 @@
 }
 
 /* — Eyebrows : affinés (graisse 500, moins espacés) — la retenue fait le luxe.
-   On dose l'or : le libellé passe en teinte plus sobre, le filet reste fin. */
+   On dose l'or, mais en gardant un contraste AA : sur le fond navy de la home,
+   le gold-deep (#8c6b34) tombait sous 4.5:1. On utilise --gold (#b8924e) qui
+   passe AA sur navy tout en restant sobre. Sur fond clair (pages prestations),
+   une règle dédiée plus bas repasse en gold-deep. */
 .section-eyebrow,
 .config-cta__eyebrow {
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.2em;
   gap: 0.75rem;
-  color: var(--gold-deep, #8c6b34);
+  color: var(--gold-light, #d4b876);
 }
 .section-eyebrow::before {
   width: 32px;
