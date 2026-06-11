@@ -60,51 +60,64 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
-      <div className="container site-header__inner">
-        <Link href="/" className="brand" aria-label="Retour à l'accueil Prestige Nautic">
-          <div className="brand__logo">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/logo-prestige-nautic.webp"
-              alt="Prestige Nautic"
-              width={160}
-              height={40}
-              decoding="async"
-            />
-          </div>
-        </Link>
+    <>
+      {/* Voile (scrim) : hors du header pour ne pas être piégé dans son contexte
+          d'empilement. Assombrit la page et ferme le drawer au clic. */}
+      <button
+        type="button"
+        className={`nav-scrim${open ? " is-visible" : ""}`}
+        aria-label="Fermer le menu"
+        tabIndex={open ? 0 : -1}
+        aria-hidden={!open}
+        onClick={() => setOpen(false)}
+      />
 
-        <button
-          className={`nav-toggle${open ? " is-active" : ""}`}
-          type="button"
-          aria-label="Ouvrir le menu"
-          aria-expanded={open}
-          aria-controls="site-nav"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="nav-toggle__line"></span>
-          <span className="nav-toggle__line"></span>
-          <span className="nav-toggle__line"></span>
-        </button>
+      <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
+        <div className="container site-header__inner">
+          <Link href="/" className="brand" aria-label="Retour à l'accueil Prestige Nautic">
+            <div className="brand__logo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/logo-prestige-nautic.webp"
+                alt="Prestige Nautic"
+                width={160}
+                height={40}
+                decoding="async"
+              />
+            </div>
+          </Link>
 
-        <nav
-          id="site-nav"
-          className={`nav${open ? " nav--open" : ""}`}
-          aria-label="Navigation principale"
-        >
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              aria-current={isCurrent(link.href) ? "page" : undefined}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
+          <button
+            className={`nav-toggle${open ? " is-active" : ""}`}
+            type="button"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="site-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="nav-toggle__line"></span>
+            <span className="nav-toggle__line"></span>
+            <span className="nav-toggle__line"></span>
+          </button>
+
+          <nav
+            id="site-nav"
+            className={`nav${open ? " nav--open" : ""}`}
+            aria-label="Navigation principale"
+          >
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                aria-current={isCurrent(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }
