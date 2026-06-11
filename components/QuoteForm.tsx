@@ -32,18 +32,79 @@ const PRESTATIONS = [
 
 const DEFAULT_LABEL = "Choisir la prestation souhaitée";
 
+// Libellés lisibles pour le joint (le nom de l'essence de teck reste masqué
+// publiquement : on transmet une référence neutre exploitable par l'artisan).
+const JOINT_LABELS: Record<string, string> = {
+  black: "Noir",
+  silver: "Gris",
+  white: "Blanc",
+};
+const TECK_REFS: Record<string, string> = {
+  champagne: "Teinte 1",
+  dapplegrey: "Teinte 2",
+  mediteraneen: "Teinte 3",
+  noyer: "Teinte 4",
+  teak: "Teinte 5",
+};
+
 export default function QuoteForm() {
   const [prestation, setPrestation] = useState("");
   const [selectOpen, setSelectOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [prefillNote, setPrefillNote] = useState("");
 
   const selectRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const selectedPrestation = PRESTATIONS.find((p) => p.value === prestation);
   const selectLabel = selectedPrestation ? selectedPrestation.title : DEFAULT_LABEL;
+
+  // Pré-remplissage depuis le configurateur (?teck=...&joint=...) :
+  // on sélectionne « Teck synthétique » et on amorce la description.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const teck = params.get("teck");
+    const joint = params.get("joint");
+    if (!teck && !joint) return;
+
+    const teckRef = teck ? TECK_REFS[teck] : null;
+    const jointLabel = joint ? JOINT_LABELS[joint] : null;
+    const parts: string[] = [];
+    if (teckRef) parts.push(`teinte ${teckRef.replace("Teinte ", "n°")}`);
+    if (jointLabel) parts.push(`joint ${jointLabel.toLowerCase()}`);
+    const combo = parts.join(", ");
+
+    // setState dans un effet : initialisation au montage depuis l'URL (légitime).
+    setTimeout(() => {
+      setPrestation("tecksynthetique");
+      if (combo) {
+        setPrefillNote(`Configuration choisie : ${combo}.`);
+        const ta = document.getElementById("quote-message-input") as HTMLTextAreaElement | null;
+        if (ta && !ta.value) {
+          ta.value = `Bonjour, je souhaite un devis pour la pose de teck synthétique sur mon pont. ${`Configuration choisie dans le configurateur : ${combo}.`} `;
+        }
+      }
+    }, 0);
+
+    // L'ancre #devis échoue souvent (contenu/images qui décalent la cible au
+    // chargement) : on amène nous-mêmes la section dans le champ de vision. On
+    // répète le calage (raf + délais) pour résister à la restauration de scroll
+    // du navigateur et aux décalages de mise en page tardifs.
+    const target = () => document.getElementById("devis");
+    const jump = () => target()?.scrollIntoView({ behavior: "auto", block: "start" });
+    const timers = [
+      requestAnimationFrame(jump),
+      window.setTimeout(jump, 120),
+      window.setTimeout(jump, 400),
+      window.setTimeout(() => target()?.scrollIntoView({ behavior: "smooth", block: "start" }), 650),
+    ];
+    return () => {
+      cancelAnimationFrame(timers[0]);
+      timers.slice(1).forEach((id) => clearTimeout(id));
+    };
+  }, []);
 
   // Fermer le select au clic extérieur et à Échap
   useEffect(() => {
@@ -141,6 +202,15 @@ export default function QuoteForm() {
 
   return (
     <form className="form" id="quote-form" ref={formRef} onSubmit={handleSubmit} noValidate>
+      {prefillNote && (
+        <div className="form-prefill" role="status">
+          <span className="form-prefill__ico" aria-hidden="true">✓</span>
+          <span>
+            <strong>Configuration reprise du configurateur.</strong> {prefillNote} Vous
+            pouvez l&apos;ajuster dans la description ci-dessous.
+          </span>
+        </div>
+      )}
       <fieldset disabled={submitting}>
       <div className="form-grid">
         <div className="field">

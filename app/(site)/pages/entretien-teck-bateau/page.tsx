@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleToc from "@/components/ArticleToc";
+import ArticleFaq from "@/components/ArticleFaq";
 
 export const metadata: Metadata = {
   title: "Entretien du teck de bateau : le guide | Prestige Nautic",
@@ -111,9 +112,16 @@ export default function EntretienTeckBateauPage() {
             <span aria-hidden="true">›</span>
             <span>Entretien du teck de bateau</span>
           </nav>
+          <span className="guide-hero__eyebrow">Entretien · Teck</span>
           <h1>Comment entretenir son teck de bateau : <em>le guide complet</em></h1>
           <p className="guide-hero__sub">Nettoyage, dégrisage, huilage, erreurs à éviter, signes d&apos;alarme… Tout ce que vous devez savoir pour garder un pont en teck impeccable, par un artisan nautique installé à Toulon.</p>
-          <p className="guide-hero__meta">Par Prestige Nautic · Toulon, Côte d&apos;Azur · Mai 2026 · Lecture : 8 min</p>
+          <div className="guide-hero__meta">
+            <span className="meta-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+              12 min de lecture
+            </span>
+            <span className="meta-chip">Par Prestige Nautic · Toulon, Côte d&apos;Azur</span>
+          </div>
         </div>
       </section>
 
@@ -237,30 +245,15 @@ export default function EntretienTeckBateauPage() {
           </div>
 
           {/* FAQ */}
-          <div className="faq-section" style={{ background: "var(--ivory)", padding: "2rem 2rem", borderRadius: "var(--radius-lg)", marginTop: "1rem" }}>
-            <h2 style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontSize: "clamp(1.5rem,3.5vw,2.1rem)", fontWeight: 600, color: "var(--navy-800)", marginBottom: "1.5rem", borderBottom: "1px solid var(--border)", paddingBottom: "0.5rem" }}>Questions <em style={{ color: "var(--gold-deep)", fontStyle: "normal" }}>fréquentes</em></h2>
-
-            <div className="faq-item">
-              <div className="faq-item__q">À quelle fréquence faut-il entretenir le teck naturel d&apos;un bateau ?</div>
-              <div className="faq-item__a">En Méditerranée, un nettoyage léger à chaque fin de sortie et un entretien approfondi deux fois par an (avant la saison et à la désarmation) suffisent pour la plupart des ponts. Un dégrisage annuel en début de saison, suivi d&apos;un huilage, est recommandé pour préserver la teinte et la durabilité du bois.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Peut-on utiliser un Kärcher sur un pont en teck ?</div>
-              <div className="faq-item__a">Non. Le jet haute pression arrache les fibres superficielles du bois, crée des micro-fissures et accélère le décollement des joints. Un nettoyage à l&apos;eau claire avec une brosse à poils souples dans le sens du fil suffit, complété si besoin d&apos;un nettoyant spécial teck marin.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Le teck synthétique demande-t-il le même entretien que le teck naturel ?</div>
-              <div className="faq-item__a">Non, c&apos;est beaucoup plus simple. Le teck synthétique ne grise pas et ne nécessite ni huilage ni dégrisage. Un nettoyage à l&apos;eau savonneuse et une brosse douce suffisent pour la majorité des salissures. Pour les taches tenaces, un dégraissant marin adapté fera l&apos;affaire.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Faut-il huiler le teck naturel de son bateau ?</div>
-              <div className="faq-item__a">L&apos;huilage nourrit le bois et ralentit le grisaillement, mais il peut aussi colmater les pores et fragiliser les joints à long terme. Si vous optez pour l&apos;huilage, choisissez une huile spéciale teck marin (pas de l&apos;huile de lin) et appliquez-la une à deux fois par saison maximum, sur bois propre et parfaitement sec.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Comment savoir si mon pont en teck doit être reposé ?</div>
-              <div className="faq-item__a">Trois signes ne trompent pas : des lames inférieures à 5-6 mm d&apos;épaisseur, des joints noirs et décollés sur plus de 20 % de la surface, ou des zones qui soulèvent ou sonnent creux sous le pied. Dans ces cas, une repose est plus économique à long terme que de continuer à entretenir.</div>
-            </div>
-          </div>
+          <ArticleFaq
+            items={[
+              { q: "À quelle fréquence faut-il entretenir le teck naturel d'un bateau ?", a: "En Méditerranée, un nettoyage léger à chaque fin de sortie et un entretien approfondi deux fois par an (avant la saison et à la désarmation) suffisent pour la plupart des ponts. Un dégrisage annuel en début de saison, suivi d'un huilage, est recommandé pour préserver la teinte et la durabilité du bois." },
+              { q: "Peut-on utiliser un Kärcher sur un pont en teck ?", a: "Non. Le jet haute pression arrache les fibres superficielles du bois, crée des micro-fissures et accélère le décollement des joints. Un nettoyage à l'eau claire avec une brosse à poils souples dans le sens du fil suffit, complété si besoin d'un nettoyant spécial teck marin." },
+              { q: "Le teck synthétique demande-t-il le même entretien que le teck naturel ?", a: "Non, c'est beaucoup plus simple. Le teck synthétique ne grise pas et ne nécessite ni huilage ni dégrisage. Un nettoyage à l'eau savonneuse et une brosse douce suffisent pour la majorité des salissures. Pour les taches tenaces, un dégraissant marin adapté fera l'affaire." },
+              { q: "Faut-il huiler le teck naturel de son bateau ?", a: "L'huilage nourrit le bois et ralentit le grisaillement, mais il peut aussi colmater les pores et fragiliser les joints à long terme. Si vous optez pour l'huilage, choisissez une huile spéciale teck marin (pas de l'huile de lin) et appliquez-la une à deux fois par saison maximum, sur bois propre et parfaitement sec." },
+              { q: "Comment savoir si mon pont en teck doit être reposé ?", a: "Trois signes ne trompent pas : des lames inférieures à 5-6 mm d'épaisseur, des joints noirs et décollés sur plus de 20 % de la surface, ou des zones qui soulèvent ou sonnent creux sous le pied. Dans ces cas, une repose est plus économique à long terme que de continuer à entretenir." },
+            ]}
+          />
 
           {/* CTA */}
           <div className="devis-cta" style={{ marginTop: "3.5rem" }}>
@@ -272,33 +265,37 @@ export default function EntretienTeckBateauPage() {
       </section>
 
       {/* AUTRES ARTICLES & PRESTATIONS */}
-      <section className="section" style={{ background: "var(--bg-soft)", paddingTop: "2rem", paddingBottom: "2rem" }}>
+      <section className="article-related">
         <div className="container">
-          <p style={{ fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "1rem" }}>Nos prestations teck</p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1.5rem" }}>
-            <Link className="related-link" href="/pages/teck-synthetique">
-              <span className="related-link__label">Pose de teck synthétique</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
-            <Link className="related-link" href="/pages/teck-naturel">
-              <span className="related-link__label">Pose de teck naturel</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
-            <Link className="related-link" href="/pages/configurateur">
-              <span className="related-link__label">Configurateur teck</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
+          <div className="article-related__group">
+            <p className="article-related__label">Nos prestations teck</p>
+            <div className="article-related__links">
+              <Link className="related-link" href="/pages/teck-synthetique">
+                <span className="related-link__label">Pose de teck synthétique</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+              <Link className="related-link" href="/pages/teck-naturel">
+                <span className="related-link__label">Pose de teck naturel</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+              <Link className="related-link" href="/pages/configurateur">
+                <span className="related-link__label">Configurateur teck</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+            </div>
           </div>
-          <p style={{ fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "1rem" }}>Autres articles</p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-            <Link className="related-link" href="/pages/teck-synthetique-ou-naturel">
-              <span className="related-link__label">Teck synthétique ou naturel : quel pont choisir ?</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
-            <Link className="related-link" href="/pages/vaigrage-bateau-guide-complet">
-              <span className="related-link__label">Le vaigrage de bateau : guide complet</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
+          <div className="article-related__group">
+            <p className="article-related__label">Autres articles</p>
+            <div className="article-related__links">
+              <Link className="related-link" href="/pages/teck-synthetique-ou-naturel">
+                <span className="related-link__label">Teck synthétique ou naturel : quel pont choisir ?</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+              <Link className="related-link" href="/pages/vaigrage-bateau-guide-complet">
+                <span className="related-link__label">Le vaigrage de bateau : guide complet</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

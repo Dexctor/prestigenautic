@@ -265,6 +265,22 @@ export default function Configurator() {
                 </div>
               </section>
             </div>
+
+            {/* Passerelle vers le devis : on transmet la combinaison choisie. */}
+            <div className="config-quote-cta">
+              <h3>Cette combinaison vous plaît&nbsp;?</h3>
+              <p>
+                Recevez une estimation pour votre pont, avec la teinte et le joint que
+                vous venez de choisir.
+              </p>
+              <Link
+                href={{ pathname: "/", query: { teck, joint }, hash: "devis" }}
+                className="btn btn--primary config-quote-cta__btn"
+              >
+                Demander un devis pour ce rendu
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </aside>
         </div>
       </section>

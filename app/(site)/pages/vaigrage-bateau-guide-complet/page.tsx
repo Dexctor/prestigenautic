@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleToc from "@/components/ArticleToc";
+import ArticleFaq from "@/components/ArticleFaq";
 
 export const metadata: Metadata = {
   title: "Vaigrage de bateau : le guide complet | Prestige Nautic",
@@ -94,18 +95,6 @@ const faqJsonLd = {
   ],
 };
 
-const badgeStyle = {
-  fontSize: "0.72rem",
-  letterSpacing: "0.08em",
-  textTransform: "uppercase" as const,
-  background: "var(--bg-soft)",
-  color: "var(--muted)",
-  borderRadius: "2rem",
-  padding: "0.2rem 0.6rem",
-  display: "inline-block",
-  marginBottom: "0.5rem",
-};
-
 export default function VaigrageBateauGuideCompletPage() {
   return (
     <main id="main-content" tabIndex={-1}>
@@ -123,9 +112,16 @@ export default function VaigrageBateauGuideCompletPage() {
             <span aria-hidden="true">›</span>
             <span>Vaigrage de bateau</span>
           </nav>
+          <span className="guide-hero__eyebrow">Intérieur · Vaigrage</span>
           <h1>Le vaigrage de bateau : <em>guide complet</em></h1>
           <p className="guide-hero__sub">Matériaux, zones concernées, étapes de pose, sur mesure vs kit standard… Tout ce qu&apos;un propriétaire de bateau doit savoir avant de refaire l&apos;habillage intérieur de son bord.</p>
-          <p className="guide-hero__meta">Par Prestige Nautic · Toulon, Côte d&apos;Azur · Mai 2026 · Lecture : 9 min</p>
+          <div className="guide-hero__meta">
+            <span className="meta-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+              12 min de lecture
+            </span>
+            <span className="meta-chip">Par Prestige Nautic · Toulon, Côte d&apos;Azur</span>
+          </div>
         </div>
       </section>
 
@@ -162,22 +158,22 @@ export default function VaigrageBateauGuideCompletPage() {
           <div className="band-dark">
             <div className="matiere-grid">
               <div className="matiere-card">
-                <div className="matiere-badge" style={badgeStyle}>Le plus courant</div>
+                <div className="matiere-card__badge">Le plus courant</div>
                 <div className="matiere-card__title">Tissu technique nautique</div>
                 <p>Traité anti-moisissure et anti-UV, il offre un rapport confort/durabilité excellent. Disponible en une très large palette de teintes, du lin naturel au gris anthracite en passant par le blanc cassé. Souple, il épouse facilement les courbes de la coque. Entretien facile : aspiration + nettoyant textile marin.</p>
               </div>
               <div className="matiere-card">
-                <div className="matiere-badge" style={badgeStyle}>Haut de gamme</div>
+                <div className="matiere-card__badge">Haut de gamme</div>
                 <div className="matiere-card__title">Similicuir marin (vinyl nautique)</div>
                 <p>Imperméable en surface, facile à nettoyer d&apos;un coup d&apos;éponge, insensible aux salissures et aux projections d&apos;eau. Les versions haut de gamme imitent très fidèlement le grain du cuir véritable. Choix fréquent pour les bateaux à moteur et les yachts où l&apos;esthétique luxe prime.</p>
               </div>
               <div className="matiere-card">
-                <div className="matiere-badge" style={badgeStyle}>Prestige</div>
+                <div className="matiere-card__badge">Prestige</div>
                 <div className="matiere-card__title">Cuir véritable</div>
                 <p>Le matériau de référence sur les grands yachts. Chaleur incomparable, patine qui se bonifie avec le temps. Demande un entretien plus attentif (crème nourrissante, protection contre l&apos;humidité excessive). Réservé aux espaces moins exposés aux projections d&apos;eau.</p>
               </div>
               <div className="matiere-card">
-                <div className="matiere-badge" style={badgeStyle}>Luxe contemporain</div>
+                <div className="matiere-card__badge">Luxe contemporain</div>
                 <div className="matiere-card__title">Alcantara</div>
                 <p>Microfibre ultra-douce, toucher velours, aspect sobre et élégant. L&apos;alcantara a une forte image luxe et s&apos;est imposé dans l&apos;automobile et le yacht ces dernières années. Résistant aux UV et à la décoloration. Se nettoie avec un nettoyant dédié à la microfibre.</p>
               </div>
@@ -291,30 +287,15 @@ export default function VaigrageBateauGuideCompletPage() {
           </div>
 
           {/* FAQ */}
-          <div className="faq-section" style={{ background: "var(--ivory)", padding: "2rem 2rem", borderRadius: "var(--radius-lg)", marginTop: "1rem" }}>
-            <h2 style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontSize: "clamp(1.5rem,3.5vw,2.1rem)", fontWeight: 600, color: "var(--navy-800)", marginBottom: "1.5rem", borderBottom: "1px solid var(--border)", paddingBottom: "0.5rem" }}>Questions <em style={{ color: "var(--gold-deep)", fontStyle: "normal" }}>fréquentes</em></h2>
-
-            <div className="faq-item">
-              <div className="faq-item__q">Combien de temps dure la pose d&apos;un vaigrage sur mesure ?</div>
-              <div className="faq-item__a">Cela dépend de la surface à traiter. Sur un voilier de 10 à 12 mètres, une prestation complète (cabine avant, carré, coursives) prend généralement entre 3 et 7 jours ouvrés. Un habitacle partiel peut se faire en 1 à 2 jours. Nous établissons le planning précis lors du diagnostic à bord.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Peut-on choisir librement le matériau et la couleur ?</div>
-              <div className="faq-item__a">Oui, totalement. Nous travaillons sur mesure et proposons une large gamme de tissus techniques nautiques, de similicuir marin, de cuir véritable et d&apos;alcantara dans de nombreuses teintes. Nous apportons des échantillons à bord lors du premier rendez-vous pour vous aider à visualiser le rendu final.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Le vaigrage résiste-t-il à l&apos;humidité et aux moisissures ?</div>
-              <div className="faq-item__a">Cela dépend du matériau et de la qualité de la pose. Le similicuir marin et le cuir traité sont imperméables en surface. Les tissus techniques nautiques sont traités anti-moisissure. Une bonne ventilation derrière le vaigrage est la clé : si l&apos;air circule bien, les moisissures n&apos;ont pas de prise. Nous veillons à ce point lors de chaque pose.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Faut-il déposer tout l&apos;ancien vaigrage avant d&apos;en poser un nouveau ?</div>
-              <div className="faq-item__a">Dans la grande majorité des cas, oui. Poser par-dessus l&apos;ancien masque les problèmes existants et donne un résultat moins propre. La dépose permet aussi d&apos;inspecter la coque, ce qui est toujours une bonne chose sur un bateau d&apos;occasion ou lors d&apos;un refit.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__q">Le vaigrage est-il réservé aux grandes unités ?</div>
-              <div className="faq-item__a">Pas du tout. Même sur un voilier ou un moteur de 8 mètres, refaire le vaigrage d&apos;une cabine ou du carré change radicalement le confort et l&apos;esthétique. L&apos;investissement est proportionnel à la surface traitée et au matériau choisi.</div>
-            </div>
-          </div>
+          <ArticleFaq
+            items={[
+              { q: "Combien de temps dure la pose d'un vaigrage sur mesure ?", a: "Cela dépend de la surface à traiter. Sur un voilier de 10 à 12 mètres, une prestation complète (cabine avant, carré, coursives) prend généralement entre 3 et 7 jours ouvrés. Un habitacle partiel peut se faire en 1 à 2 jours. Nous établissons le planning précis lors du diagnostic à bord." },
+              { q: "Peut-on choisir librement le matériau et la couleur ?", a: "Oui, totalement. Nous travaillons sur mesure et proposons une large gamme de tissus techniques nautiques, de similicuir marin, de cuir véritable et d'alcantara dans de nombreuses teintes. Nous apportons des échantillons à bord lors du premier rendez-vous pour vous aider à visualiser le rendu final." },
+              { q: "Le vaigrage résiste-t-il à l'humidité et aux moisissures ?", a: "Cela dépend du matériau et de la qualité de la pose. Le similicuir marin et le cuir traité sont imperméables en surface. Les tissus techniques nautiques sont traités anti-moisissure. Une bonne ventilation derrière le vaigrage est la clé : si l'air circule bien, les moisissures n'ont pas de prise. Nous veillons à ce point lors de chaque pose." },
+              { q: "Faut-il déposer tout l'ancien vaigrage avant d'en poser un nouveau ?", a: "Dans la grande majorité des cas, oui. Poser par-dessus l'ancien masque les problèmes existants et donne un résultat moins propre. La dépose permet aussi d'inspecter la coque, ce qui est toujours une bonne chose sur un bateau d'occasion ou lors d'un refit." },
+              { q: "Le vaigrage est-il réservé aux grandes unités ?", a: "Pas du tout. Même sur un voilier ou un moteur de 8 mètres, refaire le vaigrage d'une cabine ou du carré change radicalement le confort et l'esthétique. L'investissement est proportionnel à la surface traitée et au matériau choisi." },
+            ]}
+          />
 
           {/* CTA */}
           <div className="devis-cta" style={{ marginTop: "3.5rem" }}>
@@ -326,29 +307,33 @@ export default function VaigrageBateauGuideCompletPage() {
       </section>
 
       {/* AUTRES ARTICLES & PRESTATIONS */}
-      <section className="section" style={{ background: "var(--bg-soft)", paddingTop: "2rem", paddingBottom: "2rem" }}>
+      <section className="article-related">
         <div className="container">
-          <p style={{ fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "1rem" }}>Nos prestations intérieur</p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1.5rem" }}>
-            <Link className="related-link" href="/pages/vaigrage">
-              <span className="related-link__label">Vaigrage sur mesure</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
-            <Link className="related-link" href="/pages/refit-integral">
-              <span className="related-link__label">Refit intégral</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
+          <div className="article-related__group">
+            <p className="article-related__label">Nos prestations intérieur</p>
+            <div className="article-related__links">
+              <Link className="related-link" href="/pages/vaigrage">
+                <span className="related-link__label">Vaigrage sur mesure</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+              <Link className="related-link" href="/pages/refit-integral">
+                <span className="related-link__label">Refit intégral</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+            </div>
           </div>
-          <p style={{ fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "1rem" }}>Autres articles</p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-            <Link className="related-link" href="/pages/entretien-teck-bateau">
-              <span className="related-link__label">Comment entretenir son teck de bateau</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
-            <Link className="related-link" href="/pages/teck-synthetique-ou-naturel">
-              <span className="related-link__label">Teck synthétique ou naturel : quel pont choisir ?</span>
-              <span className="related-link__arrow">→</span>
-            </Link>
+          <div className="article-related__group">
+            <p className="article-related__label">Autres articles</p>
+            <div className="article-related__links">
+              <Link className="related-link" href="/pages/entretien-teck-bateau">
+                <span className="related-link__label">Comment entretenir son teck de bateau</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+              <Link className="related-link" href="/pages/teck-synthetique-ou-naturel">
+                <span className="related-link__label">Teck synthétique ou naturel : quel pont choisir ?</span>
+                <span className="related-link__arrow">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

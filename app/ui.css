@@ -3,6 +3,253 @@
    ============================================================ */
 
 /* ============================================================
+   DEVIS — mise en page 2 colonnes (panneau réassurance + formulaire)
+   ============================================================ */
+.devis-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+/* — Panneau de gauche (réassurance), sur navy — */
+.devis-aside {
+  position: relative;
+  align-self: stretch;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  border-radius: var(--radius-xl, 26px);
+  background: linear-gradient(160deg, var(--navy-800, #0a2540), var(--navy-950, #03101e));
+  color: #fff;
+  overflow: hidden;
+}
+.devis-aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 15% 10%, rgba(184, 146, 78, 0.18), transparent 55%);
+  pointer-events: none;
+}
+.devis-aside > * {
+  position: relative;
+}
+.devis-aside h2 {
+  color: #fff;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+.devis-aside h2 em {
+  color: var(--gold-light, #d4b876);
+}
+.devis-aside h2::after {
+  display: none; /* pas de filet ici */
+}
+.devis-aside__lead {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.7;
+}
+
+.devis-points {
+  list-style: none;
+  margin: 1.8rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+.devis-points li {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.8);
+}
+.devis-points strong {
+  color: #fff;
+  font-weight: 600;
+}
+.devis-points__ico {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold, #b8924e);
+  color: var(--navy-900, #061a2e);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.devis-contact {
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 1.1rem;
+}
+.devis-contact__item {
+  display: grid;
+  gap: 0.15rem;
+  transition: color 0.2s ease;
+}
+.devis-contact__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.devis-contact__value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gold-light, #d4b876);
+}
+.devis-contact__item:hover .devis-contact__value {
+  color: #fff;
+}
+
+/* — Le formulaire occupe la colonne de droite — */
+.devis-form-wrap {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .devis-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================================
+   HOME — bande stats (réassurance sous le hero)
+   ============================================================ */
+.home-stats {
+  background: var(--bg-soft, #061a2e);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* Variante intégrée dans une section (sous « Notre approche ») :
+   carte navy détachée, avec marge au-dessus et coins arrondis. */
+.home-stats--inline {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  background: var(--navy-900, #061a2e);
+  box-shadow: var(--shadow-md, 0 14px 42px rgba(6, 26, 46, 0.16));
+}
+.home-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.home-stat {
+  padding: clamp(2.2rem, 3.5vw, 3rem) clamp(1.5rem, 2.5vw, 2.2rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.home-stat:last-child {
+  border-right: 0;
+}
+.home-stat .value-item__num {
+  display: block;
+  font-family: var(--font-display-stack), serif;
+  font-size: clamp(2.2rem, 3.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-light, #d4b876);
+}
+.home-stat__label {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.home-stat__text {
+  display: block;
+  margin-top: 0.55rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* ============================================================
+   HOME — galerie réalisations
+   ============================================================ */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.gallery-item figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md, 14px);
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 10px 30px rgba(3, 16, 30, 0.18);
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.gallery-item figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem 1.2rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(to top, rgba(3, 16, 30, 0.85), transparent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item figure:hover img {
+    transform: scale(1.06);
+  }
+}
+
+/* ============================================================
+   HOME — étapes de la méthode (section sombre)
+   ============================================================ */
+.home-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.home-step {
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.home-step__num {
+  display: block;
+  font-family: var(--font-display-stack), serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold-light, #d4b876);
+  margin-bottom: 0.7rem;
+}
+.home-step h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.home-step p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* ============================================================
    PRESTATIONS — grille mosaïque asymétrique + survol qualitatif
    ============================================================ */
 .services-mosaic {
@@ -675,4 +922,104 @@ body {
 .article-toc__list a.is-active {
   color: var(--gold-deep, #8c6b34);
   font-weight: 600;
+}
+
+/* ============================================================
+   CONFIGURATEUR — passerelle vers le devis + polish UI/UX
+   ============================================================ */
+
+/* — Bloc CTA dans le panneau de sélection : compact, ancré en bas — */
+.config-quote-cta {
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+  padding-top: clamp(1.4rem, 2.5vw, 1.8rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.config-quote-cta h3 {
+  font-family: var(--font-display-stack);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 0 0.4rem;
+}
+.config-quote-cta p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 1.1rem;
+}
+.config-quote-cta__btn {
+  width: 100%;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.config-quote-cta__btn span {
+  transition: transform var(--transition, 0.28s ease);
+}
+.config-quote-cta__btn:hover span {
+  transform: translateX(4px);
+}
+
+/* — Transition d'image plus douce : fondu sur le rendu et le zoom — */
+.config-main-visualframe img,
+.zoom-image-frame img {
+  transition: opacity 0.4s ease, transform var(--transition, 0.28s ease);
+}
+.config-main-visualframe.is-loading img,
+.zoom-image-frame.is-loading img {
+  opacity: 0.35;
+}
+/* On adoucit le voile de chargement (moins de flou brutal). */
+.config-main-visualframe.is-loading,
+.zoom-image-frame.is-loading {
+  filter: brightness(0.96);
+}
+
+/* — Apparition douce du configurateur au chargement — */
+@keyframes config-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .config-main-visual,
+  .config-zoom-panel,
+  .config-choice-panel {
+    animation: config-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .config-zoom-panel { animation-delay: 0.08s; }
+  .config-choice-panel { animation-delay: 0.16s; }
+}
+
+/* ============================================================
+   FORMULAIRE — bandeau « configuration reprise du configurateur »
+   ============================================================ */
+.form-prefill {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(184, 146, 78, 0.1);
+  border: 1px solid rgba(184, 146, 78, 0.35);
+  border-radius: var(--radius-md, 12px);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--navy-800, #0a2540);
+}
+.form-prefill strong {
+  color: var(--gold-deep, #8c6b34);
+  font-weight: 700;
+}
+.form-prefill__ico {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold, #b8924e);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 0.05rem;
 }

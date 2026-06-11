@@ -1,15 +1,16 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
   /** Décalage d'apparition (effet d'escalier). */
   delay?: number;
   /** Balise rendue. */
-  as?: "div" | "section" | "li" | "article";
+  as?: "div" | "section" | "li" | "article" | "ul";
   className?: string;
+  style?: CSSProperties;
 };
 
 /**
@@ -17,7 +18,7 @@ type Props = {
  * dans le viewport. Animation sobre et lente (adaptée à un public large).
  * Respecte prefers-reduced-motion : apparition immédiate sans mouvement.
  */
-export default function Reveal({ children, delay = 0, as = "div", className }: Props) {
+export default function Reveal({ children, delay = 0, as = "div", className, style }: Props) {
   const reduce = useReducedMotion();
 
   const variants: Variants = {
@@ -38,6 +39,7 @@ export default function Reveal({ children, delay = 0, as = "div", className }: P
   return (
     <MotionTag
       className={className}
+      style={style}
       variants={variants}
       initial="hidden"
       whileInView="visible"

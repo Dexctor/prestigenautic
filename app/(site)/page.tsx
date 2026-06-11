@@ -53,6 +53,13 @@ const SERVICES = [
   },
 ];
 
+const PROCESS = [
+  { t: "Étude & gabarit", d: "Prise de côtes minutieuse : chaque élément du pont est relevé avant toute pose." },
+  { t: "Atelier sur mesure", d: "Découpe et façonnage précis pour votre bateau. Aucun produit générique." },
+  { t: "Pose & finitions", d: "Collage, jointoyage et ajustage à la main, en une seule passe propre." },
+  { t: "Contrôle & livraison", d: "Vérification de l'alignement et de l'étanchéité. Bateau rendu prêt à naviguer." },
+];
+
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -149,7 +156,7 @@ export default function Home() {
           <Reveal className="section-head section-head--services">
             <span className="section-eyebrow">Nos prestations</span>
             <h2>
-              Un <em>savoir-faire </em> qui s&apos;exprime dans chaque détail
+              Un <em>savoir-faire</em>{" "}qui s&apos;exprime dans chaque détail
             </h2>
             <p>
               Une approche artisanale et technique pour des projets exigeants, du pont aux
@@ -163,25 +170,27 @@ export default function Home() {
       </section>
 
       {/* SAVOIR-FAIRE */}
-      <section className="section section--split" id="savoir-faire">
+      <section className="section section--split" id="savoir-faire" style={{ background: "var(--bg-soft)" }}>
         <div className="container section-grid">
           <Reveal className="section-text">
             <span className="section-eyebrow">Notre approche</span>
             <h2>
-              Savoir-faire <em>Prestige Nautic</em>
+              Le geste de l&apos;artisan, <em>au millimètre</em>
             </h2>
             <p>
               Chaque projet est traité comme une pièce unique : sélection des matériaux,
               détails de finition, contrôle des alignements et respect des lignes du
               bateau. Basés à Toulon, nous intervenons sur toute la Côte d&apos;Azur — du
-              Var aux Alpes-Maritimes, de Marseille à Nice et Monaco — pour tous les
-              projets de refit et d&apos;aménagement nautique.
+              Var aux Alpes-Maritimes, de Marseille à Nice et Monaco.
             </p>
             <p>
-              Du pont au vaigrage, nous travaillons avec des standards de chantier haut de
-              gamme, avec une attention particulière portée aux contraintes marines de la
-              Méditerranée.
+              Du pont au vaigrage, nous travaillons avec les standards des plus beaux
+              chantiers de Méditerranée, avec une attention particulière portée aux
+              contraintes marines.
             </p>
+            <a className="btn btn--primary" href="#devis" style={{ marginTop: "1rem" }}>
+              Discuter de mon projet
+            </a>
           </Reveal>
           <Reveal className="section-media" delay={0.1}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -195,55 +204,116 @@ export default function Home() {
           </Reveal>
         </div>
 
+        {/* BANDE VALEURS — sous « Notre approche » */}
         <div className="container">
-          <Reveal className="values-strip">
-            <div className="value-item">
-              <AnimatedCounter target={100} suffix="%" />
-              <span className="value-item__label">Sur mesure</span>
-              <span className="value-item__text">
-                Chaque chantier est étudié, dessiné et exécuté pour votre bateau.
-              </span>
+          <div className="home-stats home-stats--inline" role="group" aria-label="Nos engagements">
+            <div className="home-stats__grid">
+              <div className="home-stat">
+                <AnimatedCounter target={100} suffix="%" />
+                <span className="home-stat__label">Sur mesure</span>
+                <span className="home-stat__text">
+                  Chaque chantier est étudié, dessiné et exécuté pour votre bateau.
+                </span>
+              </div>
+              <div className="home-stat">
+                <AnimatedCounter target={100} suffix="+" />
+                <span className="home-stat__label">Clients conquis</span>
+                <span className="home-stat__text">
+                  Des propriétaires satisfaits qui nous font confiance pour leurs projets.
+                </span>
+              </div>
+              <div className="home-stat">
+                <AnimatedCounter target={0} staticText="A+" />
+                <span className="home-stat__label">Matériaux premium</span>
+                <span className="home-stat__text">
+                  Teck, cuir, inox marin sélectionnés pour leur tenue dans le temps.
+                </span>
+              </div>
+              <div className="home-stat">
+                <AnimatedCounter target={0} staticText="1·1" />
+                <span className="home-stat__label">Suivi dédié</span>
+                <span className="home-stat__text">
+                  Un interlocuteur unique du devis jusqu&apos;à la livraison du chantier.
+                </span>
+              </div>
             </div>
-            <div className="value-item">
-              <AnimatedCounter target={100} suffix="+" />
-              <span className="value-item__label">Clients conquis</span>
-              <span className="value-item__text">
-                Des propriétaires satisfaits qui nous font confiance pour leurs projets.
-              </span>
-            </div>
-            <div className="value-item">
-              <AnimatedCounter target={0} staticText="A+" />
-              <span className="value-item__label">Matériaux premium</span>
-              <span className="value-item__text">
-                Teck, cuir, inox marin sélectionnés pour leur tenue dans le temps.
-              </span>
-            </div>
-            <div className="value-item">
-              <AnimatedCounter target={0} staticText="1·1" />
-              <span className="value-item__label">Suivi dédié</span>
-              <span className="value-item__text">
-                Un interlocuteur unique du devis jusqu&apos;à la livraison du chantier.
-              </span>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className="section section--dark" id="methode">
+        <div className="container">
+          <Reveal className="section-head">
+            <span className="section-eyebrow">Notre méthode</span>
+            <h2>
+              Du devis à <em>la livraison</em>
+            </h2>
+            <p>
+              Une intervention structurée, sans mauvaise surprise. Chaque chantier suit les
+              mêmes étapes pour garantir un résultat à la hauteur de vos attentes.
+            </p>
           </Reveal>
+
+          <div className="home-steps">
+            {PROCESS.map((s, i) => (
+              <Reveal as="div" className="home-step" key={s.t} delay={i * 0.08}>
+                <span className="home-step__num">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* DEVIS */}
-      <section className="section" id="devis">
+      <section className="section section--devis" id="devis">
         <div className="container">
-          <Reveal className="section-head">
-            <span className="section-eyebrow">Étude personnalisée</span>
-            <h2>
-              Demande de <em>devis</em>
-            </h2>
-            <p>
-              Décrivez votre projet, votre bateau et vos coordonnées. Cette première
-              demande nous permet de préparer un retour sérieux et adapté à vos exigences.
-            </p>
-          </Reveal>
+          <div className="devis-layout">
+            {/* Panneau de réassurance */}
+            <Reveal className="devis-aside">
+              <span className="section-eyebrow">Étude personnalisée</span>
+              <h2>
+                Demande de <em>devis</em>
+              </h2>
+              <p className="devis-aside__lead">
+                Décrivez votre projet, votre bateau et vos coordonnées. Nous préparons un
+                retour sérieux, adapté à vos exigences.
+              </p>
 
-          <QuoteForm />
+              <ul className="devis-points">
+                <li>
+                  <span className="devis-points__ico" aria-hidden="true">✓</span>
+                  <span><strong>Devis gratuit</strong> et sans engagement, après étude de votre bateau.</span>
+                </li>
+                <li>
+                  <span className="devis-points__ico" aria-hidden="true">✓</span>
+                  <span><strong>Réponse rapide</strong> par un interlocuteur unique, du devis à la livraison.</span>
+                </li>
+                <li>
+                  <span className="devis-points__ico" aria-hidden="true">✓</span>
+                  <span><strong>Toute la Côte d&apos;Azur</strong> — de Marseille à Monaco, base à Toulon.</span>
+                </li>
+              </ul>
+
+              <div className="devis-contact">
+                <a href="tel:+33783345950" className="devis-contact__item">
+                  <span className="devis-contact__label">Par téléphone</span>
+                  <span className="devis-contact__value">07 83 34 59 50</span>
+                </a>
+                <a href="mailto:prestige.nautic@gmail.com" className="devis-contact__item">
+                  <span className="devis-contact__label">Par email</span>
+                  <span className="devis-contact__value">prestige.nautic@gmail.com</span>
+                </a>
+              </div>
+            </Reveal>
+
+            {/* Formulaire */}
+            <Reveal className="devis-form-wrap" delay={0.1}>
+              <QuoteForm />
+            </Reveal>
+          </div>
         </div>
       </section>
     </main>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Articles & guides nautiques | Prestige Nautic",
@@ -18,6 +19,42 @@ export const metadata: Metadata = {
   },
 };
 
+const ARTICLES = [
+  {
+    href: "/pages/entretien-teck-bateau",
+    img: "/assets/teck-naturel.webp",
+    alt: "Pont en teck naturel d'un bateau — entretien, nettoyage et dégrisage",
+    category: "Entretien",
+    topic: "Teck",
+    readingTime: 12,
+    title: "Comment entretenir son teck de bateau : le guide complet",
+    excerpt:
+      "Nettoyage, dégrisage, huilage, erreurs à éviter, signes qui indiquent qu'une repose s'impose… Tout ce qu'il faut savoir pour garder un pont en teck impeccable en Méditerranée.",
+  },
+  {
+    href: "/pages/vaigrage-bateau-guide-complet",
+    img: "/assets/vaigrage.webp",
+    alt: "Vaigrage en cuir sur mesure à l'intérieur d'un bateau",
+    category: "Intérieur",
+    topic: "Vaigrage",
+    readingTime: 12,
+    title: "Le vaigrage de bateau : guide complet sur l'habillage intérieur",
+    excerpt:
+      "Qu'est-ce que le vaigrage ? Quels matériaux choisir (tissu, cuir, alcantara) ? Comment se déroule la pose sur mesure ? Tout ce que vous devez savoir avant de refaire l'intérieur de votre bord.",
+  },
+  {
+    href: "/pages/teck-synthetique-ou-naturel",
+    img: "/assets/teck-synthetique.webp",
+    alt: "Comparaison teck synthétique et teck naturel sur un pont de bateau",
+    category: "Comparatif",
+    topic: "Teck",
+    readingTime: 5,
+    title: "Teck synthétique ou teck naturel : quel pont choisir pour votre bateau ?",
+    excerpt:
+      "Aspect, entretien, durabilité, confort, coût sur la durée… Un comparatif honnête critère par critère pour choisir le pont qui correspond vraiment à votre usage et à votre profil.",
+  },
+];
+
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -27,25 +64,25 @@ const breadcrumbJsonLd = {
   ],
 };
 
-const collectionJsonLd = {
+// ItemList : aide Google à comprendre qu'il s'agit d'une liste d'articles
+// ordonnée et à les afficher comme un ensemble (meilleur que CollectionPage seul).
+const itemListJsonLd = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Articles et guides nautiques — Prestige Nautic",
-  description:
-    "Guides pratiques et conseils d'artisan nautique par Prestige Nautic, basé à Toulon sur la Côte d'Azur.",
-  url: "https://prestigenautic.com/articles",
-  publisher: {
-    "@type": "Organization",
-    name: "Prestige Nautic",
-    logo: { "@type": "ImageObject", url: "https://prestigenautic.com/assets/logo-prestige-nautic.webp" },
-  },
+  "@type": "ItemList",
+  name: "Guides et conseils d'artisan nautique — Prestige Nautic",
+  itemListElement: ARTICLES.map((a, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `https://prestigenautic.com${a.href}`,
+    name: a.title,
+  })),
 };
 
 export default function ArticlesPage() {
   return (
     <main id="main-content" tabIndex={-1}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
       {/* HERO */}
       <section className="articles-hero">
@@ -55,87 +92,78 @@ export default function ArticlesPage() {
             <span aria-hidden="true">›</span>
             <span>Articles</span>
           </nav>
-          <h1>Guides et conseils <em>d&apos;artisan nautique</em></h1>
-          <p className="articles-hero__sub">Entretien du teck, vaigrage, refit, choix des matériaux… Des réponses concrètes aux questions que se posent les propriétaires de bateaux sur la Côte d&apos;Azur.</p>
+          <span className="articles-hero__eyebrow">Le journal de l&apos;atelier</span>
+          <h1>
+            Guides &amp; conseils <em>d&apos;artisan nautique</em>
+          </h1>
+          <p className="articles-hero__sub">
+            Entretien du teck, vaigrage, refit, choix des matériaux… Des réponses
+            concrètes aux questions que se posent les propriétaires de bateaux sur la
+            Côte d&apos;Azur.
+          </p>
         </div>
       </section>
 
       {/* ARTICLES */}
-      <section className="section" style={{ background: "var(--surface)" }}>
+      <section className="section articles-section">
         <div className="container">
+          <Reveal className="section-intro" as="div">
+            <p>
+              Ces guides sont rédigés par l&apos;équipe de Prestige Nautic, artisans
+              nautiques basés à Toulon, avec plusieurs années d&apos;expérience sur les
+              bateaux du Var et des Alpes-Maritimes. Pas de contenu générique : des
+              réponses ancrées dans la réalité de la navigation méditerranéenne.
+            </p>
+          </Reveal>
 
-          <div className="section-intro">
-            <p>Ces guides sont rédigés par l&apos;équipe de Prestige Nautic, artisans nautiques basés à Toulon, avec plusieurs années d&apos;expérience sur les bateaux du Var et des Alpes-Maritimes. Pas de contenu générique : des réponses ancrées dans la réalité de la navigation méditerranéenne.</p>
-          </div>
-
-          <div className="articles-grid">
-
-            {/* Article 1 : Entretien teck */}
-            <Link className="article-card" href="/pages/entretien-teck-bateau">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/teck-naturel.webp"
-                alt="Pont en teck naturel d'un bateau — entretien et nettoyage"
-                className="article-card__img"
-                loading="lazy"
-                width="600"
-                height="338"
-              />
-              <div className="article-card__body">
-                <div className="article-card__tag">Entretien · Teck</div>
-                <div className="article-card__title">Comment entretenir son teck de bateau : le guide complet</div>
-                <div className="article-card__excerpt">Nettoyage, dégrisage, huilage, erreurs à éviter, signes qui indiquent qu&apos;une repose s&apos;impose… Tout ce qu&apos;il faut savoir pour garder un pont en teck impeccable en Méditerranée.</div>
-                <span className="article-card__cta">Lire l&apos;article</span>
-              </div>
-            </Link>
-
-            {/* Article 2 : Vaigrage */}
-            <Link className="article-card" href="/pages/vaigrage-bateau-guide-complet">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/vaigrage.webp"
-                alt="Vaigrage en cuir sur mesure à l'intérieur d'un bateau"
-                className="article-card__img"
-                loading="lazy"
-                width="600"
-                height="338"
-              />
-              <div className="article-card__body">
-                <div className="article-card__tag">Intérieur · Vaigrage</div>
-                <div className="article-card__title">Le vaigrage de bateau : guide complet sur l&apos;habillage intérieur</div>
-                <div className="article-card__excerpt">Qu&apos;est-ce que le vaigrage ? Quels matériaux choisir (tissu, cuir, alcantara) ? Comment se déroule la pose sur mesure ? Tout ce que vous devez savoir avant de refaire l&apos;intérieur de votre bord.</div>
-                <span className="article-card__cta">Lire l&apos;article</span>
-              </div>
-            </Link>
-
-            {/* Article 3 : Comparatif teck */}
-            <Link className="article-card" href="/pages/teck-synthetique-ou-naturel">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/teck-synthetique.webp"
-                alt="Comparaison teck synthétique et teck naturel sur un pont de bateau"
-                className="article-card__img"
-                loading="lazy"
-                width="600"
-                height="338"
-              />
-              <div className="article-card__body">
-                <div className="article-card__tag">Comparatif · Teck</div>
-                <div className="article-card__title">Teck synthétique ou teck naturel : quel pont choisir pour votre bateau ?</div>
-                <div className="article-card__excerpt">Aspect, entretien, durabilité, confort, coût sur la durée… Un comparatif honnête critère par critère pour choisir le pont qui correspond vraiment à votre usage et à votre profil.</div>
-                <span className="article-card__cta">Lire l&apos;article</span>
-              </div>
-            </Link>
-
-          </div>
+          <ul className="articles-grid" aria-label="Liste des guides">
+            {ARTICLES.map((a, i) => (
+              <Reveal as="li" key={a.href} delay={i * 0.08} className="article-card-wrap">
+                <Link className="article-card" href={a.href}>
+                  <div className="article-card__media">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={a.img}
+                      alt={a.alt}
+                      className="article-card__img"
+                      loading="lazy"
+                      width={600}
+                      height={338}
+                    />
+                    <span className="article-card__badge">{a.category}</span>
+                  </div>
+                  <div className="article-card__body">
+                    <div className="article-card__meta">
+                      <span className="article-card__topic">{a.topic}</span>
+                      <span className="article-card__dot" aria-hidden="true">·</span>
+                      <span className="article-card__time">{a.readingTime} min de lecture</span>
+                    </div>
+                    <h2 className="article-card__title">{a.title}</h2>
+                    <p className="article-card__excerpt">{a.excerpt}</p>
+                    <span className="article-card__cta">
+                      Lire l&apos;article
+                      <span className="article-card__arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
 
           {/* CTA */}
-          <div className="devis-cta" style={{ marginTop: "4rem" }}>
-            <h2>Vous avez un projet <em>sur la Côte d&apos;Azur ?</em></h2>
-            <p>Nos guides vous donnent les clés pour comprendre. Pour une situation concrète sur votre bateau — diagnostic à quai, devis sur mesure, conseil matériaux — contactez-nous directement.</p>
-            <Link className="btn btn--primary" href="/#devis">Demander un devis gratuit</Link>
-          </div>
-
+          <Reveal className="devis-cta" as="div" style={{ marginTop: "4rem" }}>
+            <h2>
+              Vous avez un projet <em>sur la Côte d&apos;Azur ?</em>
+            </h2>
+            <p>
+              Nos guides vous donnent les clés pour comprendre. Pour une situation
+              concrète sur votre bateau — diagnostic à quai, devis sur mesure, conseil
+              matériaux — contactez-nous directement.
+            </p>
+            <Link className="btn btn--primary" href="/#devis">
+              Demander un devis gratuit
+            </Link>
+          </Reveal>
         </div>
       </section>
     </main>
