@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://prestigenautic.com"),
   title: {
-    default: "Artisan teck nautique Toulon & Côte d'Azur | Prestige Nautic",
+    default: "Artisan teck nautique à Toulon | Prestige Nautic",
     template: "%s | Prestige Nautic",
   },
   description:

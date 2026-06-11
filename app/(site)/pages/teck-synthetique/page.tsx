@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrestationLayout from "@/components/PrestationLayout";
 
 export const metadata: Metadata = {
-  title: "Pose teck synthétique bateau | Prestige Nautic — Côte d'Azur",
+  title: "Pose de teck synthétique bateau — Côte d'Azur",
   description:
     "Pose de teck synthétique pour yachts et bateaux sur la Côte d'Azur. Artisan à Toulon : finitions premium, durabilité marine, entretien minimal. Devis gratuit.",
   alternates: { canonical: "https://prestigenautic.com/pages/teck-synthetique" },

@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 import ServiceGrid from "@/components/ServiceGrid";
 
 export const metadata: Metadata = {
-  title: "Artisan teck nautique Toulon & Côte d'Azur | Prestige Nautic",
+  title: "Artisan teck nautique à Toulon — Côte d'Azur",
   description:
     "Artisan nautique haut de gamme à Toulon : teck synthétique, teck naturel, vaigrage, refit et soudure sur mesure sur toute la Côte d'Azur. Devis gratuit.",
   alternates: { canonical: "https://prestigenautic.com/" },

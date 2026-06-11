@@ -394,10 +394,12 @@
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 200px;
   }
+  /* La carte mise en avant occupe 2 rangées : sa hauteur (≈400px) est portée
+     par la grille elle-même, sinon elle déborde et chevauche la rangée suivante. */
   .svc-card--featured {
     grid-column: span 2;
-    grid-row: span 1;
-    min-height: 280px;
+    grid-row: span 2;
+    min-height: 0;
   }
   /* Sur petit écran, le texte des cartes reste visible (pas de survol tactile). */
   .svc-card__text {
