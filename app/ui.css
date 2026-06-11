@@ -764,15 +764,35 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Message d'erreur : un peu plus lisible */
+/* Message d'erreur : encadré moderne, aligné avec le style du succès */
 #quote-message:not(:empty) {
-  margin-top: 1rem;
-  padding: 0.85rem 1.1rem;
-  background: rgba(192, 57, 43, 0.1);
-  border-left: 3px solid #c0392b;
-  border-radius: var(--radius-sm, 10px);
-  color: #f1c9c4;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(199, 70, 52, 0.12);
+  border: 1px solid rgba(199, 70, 52, 0.4);
+  border-left: 3px solid #d65745;
+  border-radius: var(--radius-md, 14px);
+  color: #f6d6d0;
   font-weight: 500;
+  line-height: 1.5;
+  animation: quoteSuccessIn 0.35s ease;
+}
+#quote-message:not(:empty)::before {
+  content: "!";
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  background: #d65745;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 /* Champ invalide (validation au blur) */
@@ -785,7 +805,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .quote-spinner { animation-duration: 1.2s; }
-  #quote-success:not(:empty) { animation: none; }
+  #quote-success:not(:empty),
+  #quote-message:not(:empty) { animation: none; }
 }
 
 /* ---------- Page 404 ---------- */
