@@ -45,6 +45,7 @@ export default function VaigragePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PrestationLayout
         breadcrumb="Vaigrage"
+        heroEyebrow="Habillage intérieur"
         heroTitle={<>Vaigrage intérieur <em>sur mesure</em> pour yacht et bateau</>}
         heroSubtitle="Un intérieur transformé, silencieux et élégant. Prestige Nautic réalise votre vaigrage avec des matériaux nautiques haut de gamme, sur toute la Côte d'Azur."
         heroActions={[

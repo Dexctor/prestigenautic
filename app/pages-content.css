@@ -1649,3 +1649,119 @@
   .guide-hero__meta { animation-delay: 0.24s; }
 }
 
+
+/* ============================================================
+   PAGES PRESTATIONS — refonte design & animations (5 pages, via
+   PrestationLayout). Bloc unique en fin de fichier : surcharge les
+   définitions dupliquées par source.
+   ============================================================ */
+
+/* — HERO prestation enrichi — */
+.prestation-hero {
+  min-height: min(62vh, 600px) !important;
+}
+.prestation-hero__img { opacity: 0.5 !important; }
+/* Overlay plus profond + voile doré en bas pour ancrer le texte. */
+.prestation-hero__overlay {
+  background:
+    radial-gradient(100% 80% at 0% 100%, rgba(184, 146, 78, 0.14), transparent 55%),
+    linear-gradient(to top, rgba(3, 16, 30, 0.95) 0%, rgba(3, 16, 30, 0.55) 45%, rgba(3, 16, 30, 0.25) 100%) !important;
+}
+/* Filet doré tout en haut du hero. */
+.prestation-hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 2;
+  background: linear-gradient(90deg, transparent, var(--gold, #b8924e), transparent);
+  opacity: 0.5;
+}
+.prestation-hero__eyebrow {
+  display: inline-block;
+  font-family: var(--font-display-stack);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light, #d4b876);
+  margin-bottom: 0.85rem;
+}
+.prestation-hero h1 { font-weight: 800 !important; letter-spacing: -0.02em !important; }
+
+/* Apparition en cascade du contenu du hero. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes presta-hero-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  .prestation-hero__content > * {
+    animation: presta-hero-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .prestation-hero__breadcrumb { animation-delay: 0.05s; }
+  .prestation-hero__eyebrow { animation-delay: 0.12s; }
+  .prestation-hero h1 { animation-delay: 0.2s; }
+  .prestation-hero__sub { animation-delay: 0.3s; }
+  .prestation-hero__actions { animation-delay: 0.4s; }
+}
+
+/* — CARTES AVANTAGES : survol qualitatif (élévation + accent doré) — */
+.avantage-card {
+  position: relative;
+  border-radius: var(--radius-lg, 18px) !important;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+.avantage-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--gold, #b8924e), var(--gold-light, #d4b876));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+@media (hover: hover) {
+  .avantage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 44px rgba(6, 26, 46, 0.14);
+    border-color: rgba(184, 146, 78, 0.4) !important;
+  }
+  .avantage-card:hover::before { transform: scaleX(1); }
+}
+.avantage-card__icon { color: var(--gold-deep, #8c6b34); transition: transform 0.3s ease; }
+@media (hover: hover) {
+  .avantage-card:hover .avantage-card__icon { transform: translateY(-2px) scale(1.05); }
+}
+
+/* — RÉALISATIONS : zoom doux de l'image au survol — */
+.realisation-card { border-radius: var(--radius-lg, 18px); overflow: hidden; }
+.realisation-card__media { overflow: hidden; display: block; }
+.realisation-card__media img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
+  width: 100%;
+}
+@media (hover: hover) {
+  .realisation-card:hover .realisation-card__media img { transform: scale(1.06); }
+}
+
+/* — PROCESS : carte par étape, numéro doré, liseré au survol — */
+.process-step {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.process-step__num {
+  color: var(--gold, #b8924e);
+}
+@media (hover: hover) {
+  .process-step:hover { transform: translateX(4px); }
+}
+
+/* — Sécurité reduced-motion sur les survols transformés — */
+@media (prefers-reduced-motion: reduce) {
+  .avantage-card, .avantage-card__icon, .realisation-card__media img, .process-step {
+    transition: none !important;
+  }
+}

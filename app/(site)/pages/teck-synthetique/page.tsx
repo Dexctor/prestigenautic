@@ -95,6 +95,7 @@ export default function TeckSynthetiquePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <PrestationLayout
         breadcrumb="Teck synthétique"
+        heroEyebrow="Pose de pont"
         heroTitle={<>Pose de <em>teck synthétique</em> sur yacht et bateau</>}
         heroSubtitle="Un pont impeccable, sans les contraintes du teck naturel. Prestige Nautic installe le teck synthétique avec le soin d'un artisan, sur toute la Côte d'Azur."
         heroActions={[

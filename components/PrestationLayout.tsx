@@ -23,6 +23,8 @@ export type RelatedLink = { href: string; label: string };
 export type PrestationData = {
   /** Fil d'Ariane : libellé courant */
   breadcrumb: string;
+  /** Petit libellé doré au-dessus du titre du hero (catégorie). Optionnel. */
+  heroEyebrow?: string;
   /** Titre H1 du hero (peut contenir du JSX pour les <em>) */
   heroTitle: ReactNode;
   heroSubtitle: ReactNode;
@@ -110,6 +112,9 @@ export default function PrestationLayout(data: PrestationData) {
             <span aria-hidden="true">›</span>
             <span>{data.breadcrumb}</span>
           </nav>
+          {data.heroEyebrow && (
+            <span className="prestation-hero__eyebrow">{data.heroEyebrow}</span>
+          )}
           <h1>{data.heroTitle}</h1>
           <p className="prestation-hero__sub">{data.heroSubtitle}</p>
           <div className="prestation-hero__actions">
@@ -178,24 +183,26 @@ export default function PrestationLayout(data: PrestationData) {
       {data.realisations && (
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="container">
-            <div className="section-head">
+            <Reveal className="section-head">
               <span className="section-eyebrow">{data.realisations.eyebrow}</span>
               <h2>{data.realisations.title}</h2>
               <p>{data.realisations.text}</p>
-            </div>
+            </Reveal>
             <div
               className={`realisations__grid${
                 data.realisations.gridModifier ? ` realisations__grid--${data.realisations.gridModifier}` : ""
               }`}
             >
               {data.realisations.items.map((r, i) => (
-                <figure className="realisation-card" key={i}>
-                  <span className="realisation-card__media">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={r.src} alt={r.alt} loading="lazy" decoding="async" />
-                  </span>
-                  <figcaption>{r.caption}</figcaption>
-                </figure>
+                <Reveal as="div" key={i} delay={i * 0.08}>
+                  <figure className="realisation-card">
+                    <span className="realisation-card__media">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={r.src} alt={r.alt} loading="lazy" decoding="async" />
+                    </span>
+                    <figcaption>{r.caption}</figcaption>
+                  </figure>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -212,13 +219,13 @@ export default function PrestationLayout(data: PrestationData) {
           </Reveal>
           <div className="process-steps">
             {data.processSteps.map((s, i) => (
-              <div className="process-step" key={i}>
+              <Reveal as="div" className="process-step" key={i} delay={i * 0.07}>
                 <div className="process-step__num" aria-hidden="true"></div>
                 <div className="process-step__body">
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

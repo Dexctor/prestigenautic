@@ -88,6 +88,7 @@ export default function RefitIntegralPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PrestationLayout
         breadcrumb="Refit intégral"
+        heroEyebrow="Refit & rénovation"
         heroTitle={<>Refit intégral <em>sur mesure</em> — de la structure à l&apos;électronique</>}
         heroSubtitle="Un bateau entièrement transformé : vaigrage, boiseries, inox, sellerie, mais aussi Starlink, enceintes, LED sous-marines, covering et lettrage LED — avec la même exigence de finition d'un bout à l'autre du chantier."
         heroActions={[

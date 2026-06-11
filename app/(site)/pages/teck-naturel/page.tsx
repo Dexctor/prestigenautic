@@ -45,6 +45,7 @@ export default function TeckNaturelPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PrestationLayout
         breadcrumb="Teck naturel"
+        heroEyebrow="Pose de pont"
         heroTitle={<>Pose de <em>teck naturel</em> sur yacht et bateau</>}
         heroSubtitle="Le bois noble par excellence. De la pose sur-mesure à l'entretien annuel et à la réparation, Prestige Nautic préserve l'élégance de votre pont en teck naturel — sur toute la Côte d'Azur."
         heroActions={[

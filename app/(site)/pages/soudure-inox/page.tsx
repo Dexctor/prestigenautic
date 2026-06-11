@@ -50,6 +50,7 @@ export default function SoudureInoxPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PrestationLayout
         breadcrumb="Soudure sur mesure"
+        heroEyebrow="Métallerie marine"
         heroTitle={<>Soudure sur mesure <em>pour yacht et bateau</em></>}
         heroSubtitle="Filières, mains courantes, bossoirs, taquets, arceaux : Prestige Nautic fabrique et pose chaque pièce métallique sur mesure — inox, acier, aluminium — avec une finition digne des plus beaux chantiers navals."
         heroActions={[
