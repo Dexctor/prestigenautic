@@ -223,146 +223,136 @@
   }
 }
 
-/* ----- NAVBAR / menu burger plein écran soigné -----
-   On force position/top/height en !important pour battre les règles de
-   site.css (.nav y est position:absolute; top:calc(100%+…)), sinon le panneau
-   ne s'étire pas et s'effondre sur la hauteur de son contenu (~50px). */
+/* ============================================================
+   MENU MOBILE plein écran — refonte propre (opaque, net, animé)
+   On force tout en !important car site.css définit aussi .nav et
+   .nav.nav--open dans son propre @media (max-width:899px).
+   ============================================================ */
 @media (max-width: 899px) {
-  .nav.nav--open {
+  .site-header .nav.nav--open {
     position: fixed !important;
-    top: 74px !important;          /* hauteur du header mobile (min-height 74px) */
+    top: 74px !important;          /* hauteur du header mobile */
     left: 0 !important;
     right: 0 !important;
-    bottom: auto !important;
+    bottom: 0 !important;
     height: calc(100dvh - 74px) !important;
-    max-height: calc(100dvh - 74px);
+    max-height: calc(100dvh - 74px) !important;
+    width: auto !important;
     display: flex !important;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 0.15rem;
-    margin: 0;
-    padding: 1.5rem 1.35rem calc(1.5rem + env(safe-area-inset-bottom));
-    /* Fond dégradé navy + voile doré discret en haut. */
-    background:
-      radial-gradient(120% 60% at 100% 0%, rgba(184, 146, 78, 0.12), transparent 60%),
-      linear-gradient(180deg, rgba(3, 16, 30, 0.99) 0%, rgba(6, 26, 46, 0.99) 100%);
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
-    overflow-y: auto;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0.5rem 0 calc(1rem + env(safe-area-inset-bottom)) !important;
+    /* Fond OPAQUE : masque totalement la page derrière (plus de transparence). */
+    background: #061a2e !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
-    /* Apparition du panneau : fondu + léger glissement. */
-    animation: nav-panel-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: nav-panel-in 0.3s ease both;
   }
-  /* Navbar compactée : le header passe à 64px → on aligne le panneau. */
+  /* Voile doré décoratif discret en haut du panneau. */
+  .site-header .nav.nav--open::before {
+    content: "" !important;
+    display: block !important;
+    position: sticky;
+    top: 0;
+    height: 2px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, transparent, var(--gold, #b8924e), transparent);
+    opacity: 0.6;
+  }
+  /* Navbar compactée : header à 64px. */
   .site-header.is-scrolled .nav.nav--open {
     top: 64px !important;
     height: calc(100dvh - 64px) !important;
-    max-height: calc(100dvh - 64px);
+    max-height: calc(100dvh - 64px) !important;
   }
 
-  /* — Liens : plus aérés, avec une flèche et un filet de séparation fin. — */
-  .nav.nav--open a {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1.15rem 0.6rem 1.15rem 1.1rem;
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
-    /* Révélation en cascade (le délai par lien est défini plus bas). */
-    animation: nav-link-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* — Liens : ligne pleine largeur, texte à gauche, chevron à droite. — */
+  .site-header .nav.nav--open a {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1.25rem 1.5rem !important;
+    font-size: 1.18rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    color: #fff !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 0 !important;
+    text-align: left !important;
+    transition: background 0.2s ease, padding-left 0.2s ease !important;
+    animation: nav-link-in 0.45s ease both;
   }
-  /* Chevron doré à droite de chaque lien (purement CSS, pas de markup). */
-  .nav.nav--open a::after {
-    content: "›";
-    display: inline-block !important;
-    font-size: 1.4rem;
-    line-height: 1;
-    color: var(--gold, #b8924e);
-    opacity: 0.55;
-    transform: translateX(0);
-    transition: transform 0.25s ease, opacity 0.25s ease;
+  /* Chevron doré, bien à droite (flex le pousse au bout de la ligne). */
+  .site-header .nav.nav--open a::after {
+    content: "›" !important;
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    font-size: 1.5rem !important;
+    line-height: 1 !important;
+    color: var(--gold, #b8924e) !important;
+    opacity: 0.7 !important;
+    background: none !important;
+    transition: transform 0.2s ease !important;
   }
-  /* Liseré doré à gauche qui se déploie au toucher/survol. */
-  .nav.nav--open a::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 3px;
-    height: 0;
-    background: var(--gold, #b8924e);
-    border-radius: 999px;
-    transform: translateY(-50%);
-    transition: height 0.25s ease;
+  .site-header .nav.nav--open a:active,
+  .site-header .nav.nav--open a:hover,
+  .site-header .nav.nav--open a:focus-visible {
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding-left: 1.7rem !important;
   }
-  .nav.nav--open a:hover,
-  .nav.nav--open a:active,
-  .nav.nav--open a:focus-visible {
-    background: rgba(255, 255, 255, 0.06);
-    color: #fff;
-    padding-left: 1.3rem;
-  }
-  .nav.nav--open a:hover::after,
-  .nav.nav--open a:active::after {
-    opacity: 1;
+  .site-header .nav.nav--open a:active::after,
+  .site-header .nav.nav--open a:hover::after {
     transform: translateX(4px);
   }
-  .nav.nav--open a:hover::before,
-  .nav.nav--open a:active::before {
-    height: 60%;
-  }
-  /* Lien de la page courante : accent doré permanent. */
-  .nav.nav--open a[aria-current="page"] {
-    color: var(--gold-light, #d4b876);
-  }
-  .nav.nav--open a[aria-current="page"]::before {
-    height: 60%;
+  /* Page courante : texte doré + barre dorée à gauche. */
+  .site-header .nav.nav--open a[aria-current="page"] {
+    color: var(--gold-light, #d4b876) !important;
+    box-shadow: inset 3px 0 0 var(--gold, #b8924e);
   }
 
-  /* Cascade : chaque lien apparaît légèrement après le précédent. */
-  .nav.nav--open a:nth-child(1) { animation-delay: 0.10s; }
-  .nav.nav--open a:nth-child(2) { animation-delay: 0.16s; }
-  .nav.nav--open a:nth-child(3) { animation-delay: 0.22s; }
-  .nav.nav--open a:nth-child(4) { animation-delay: 0.28s; }
-  .nav.nav--open a:nth-child(5) { animation-delay: 0.34s; }
-  .nav.nav--open a:nth-child(6) { animation-delay: 0.40s; }
+  /* Cascade d'apparition des liens. */
+  .site-header .nav.nav--open a:nth-child(1) { animation-delay: 0.06s; }
+  .site-header .nav.nav--open a:nth-child(2) { animation-delay: 0.11s; }
+  .site-header .nav.nav--open a:nth-child(3) { animation-delay: 0.16s; }
+  .site-header .nav.nav--open a:nth-child(4) { animation-delay: 0.21s; }
+  .site-header .nav.nav--open a:nth-child(5) { animation-delay: 0.26s; }
+  .site-header .nav.nav--open a:nth-child(6) { animation-delay: 0.31s; }
 }
 
 @keyframes nav-panel-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 @keyframes nav-link-in {
-  from { opacity: 0; transform: translateX(-14px); }
+  from { opacity: 0; transform: translateX(-12px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Accessibilité : pas d'animation si l'utilisateur la refuse. */
 @media (max-width: 899px) and (prefers-reduced-motion: reduce) {
-  .nav.nav--open,
-  .nav.nav--open a {
+  .site-header .nav.nav--open,
+  .site-header .nav.nav--open a {
     animation: none !important;
   }
 }
 
-/* — Bouton burger : transition douce de l'icône (lignes → croix). — */
-.nav-toggle__line {
-  transform-origin: center;
-}
-.nav-toggle {
-  transition: background 0.25s ease, border-color 0.25s ease;
-}
+/* — Bouton burger : fond doré quand actif. — */
+.nav-toggle { transition: background 0.25s ease, border-color 0.25s ease; }
 .site-header .nav-toggle.is-active {
   background: rgba(184, 146, 78, 0.18) !important;
   border-color: rgba(184, 146, 78, 0.55) !important;
